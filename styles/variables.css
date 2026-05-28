@@ -1,0 +1,59 @@
+:root {
+  --nexus-brown: #201613;
+  --nexus-mid-brown: #524742;
+  --nexus-off-white: #fafaf8;
+  --nexus-lilac: #b0a9de;
+  --cloud-50: #fafaf8;
+  --cloud-100: #ecebe5;
+  --cloud-200: #dad8ce;
+  --cloud-300: #c2bfaf;
+  --cloud-400: #aaa38d;
+  --cloud-500: #988f77;
+  --cloud-600: #8b806b;
+  --cloud-800: #60574c;
+  --umber-100: #e4dfd9;
+  --umber-400: #8f827a;
+  --umber-500: #736761;
+  --lilac-100: #efeef9;
+  --lilac-300: #cbc8ea;
+  --lilac-500: #9284ce;
+  --orange-100: #ffead4;
+  --orange-300: #ffb070;
+  --orange-500: #ff6a1a;
+  --blue-100: #dbf0f2;
+  --blue-300: #8bcbd5;
+  --blue-500: #3990a1;
+  --green-50: #f3faf3;
+  --green-100: #e4f4e5;
+  --green-200: #cae8cd;
+  --green-300: #a0d5a6;
+  --green-500: #4a9d54;
+  --green-accent: #77be7f;
+  --yellow-200: #ffdf88;
+  --yellow-300: #ffc84a;
+  --yellow-500: #f98e07;
+  --sidebar-width: 304px;
+  --font-sans: "Saans", system-ui, -apple-system, sans-serif;
+  /* Pixel grid when de-emphasised — blur only; canvas already draws at low alpha */
+  --pattern-dim-blur: 8px;
+  --pattern-dim-opacity: 1;
+  --pattern-dim-duration: 0.75s;
+  --panel-morph-open-duration: 0.52s;
+  --panel-morph-close-duration: 0.37s;
+  /* Figma 6280:32839 — blur layers at 5%; edge layer helps on cloud-50 */
+  --shadow-surface:
+    0 1px 2px rgba(32, 22, 19, 0.06),
+    0 20px 12.5px rgba(32, 22, 19, 0.05),
+    0 8px 5px rgba(32, 22, 19, 0.05);
+  --shadow-surface-expanded: var(--shadow-surface);
+  /* Same layers as --shadow-surface; each alpha × 0.5 */
+  --shadow-surface-empty:
+    0 1px 2px rgba(32, 22, 19, 0.03),
+    0 20px 12.5px rgba(32, 22, 19, 0.025),
+    0 8px 5px rgba(32, 22, 19, 0.025);
+  --shadow-surface-hover: 0 16px 28px -6px rgba(32, 22, 19, 0.08);
+  --overlay-nexus-5: rgba(32, 22, 19, 0.05);
+  --overlay-disabled: rgba(32, 22, 19, 0.1);
+  --shadow-card: var(--shadow-surface);
+  --shadow-sidebar: 0 1px 1px rgba(50, 23, 23, 0.05);
+}

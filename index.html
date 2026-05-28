@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaro — Home</title>
+    <link rel="preload" href="assets/category-panel/app-preview.png" as="image" />
+    <link rel="stylesheet" href="styles/main.css?v=91" />
+  </head>
+  <body>
+  <div class="app">
+    <!-- Sidebar (Figma 6270:110294) -->
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="sidebar__panel">
+        <header class="sidebar__header">
+          <div class="sidebar__logo">
+            <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
+          </div>
+          <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
+            <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
+          </button>
+        </header>
+
+        <div class="sidebar__workspace">
+          <button class="workspace-selector" type="button">
+            <span class="workspace-selector__icon">Z</span>
+            <span class="workspace-selector__label">Zaro’s Workspace</span>
+            <span class="workspace-selector__chevron-wrap" aria-hidden="true">
+              <img src="assets/sidebar/icon-chevron.svg" width="16" height="16" alt="" />
+            </span>
+          </button>
+        </div>
+
+        <div class="sidebar__scroll">
+          <div class="sidebar__nav-group">
+            <nav class="nav-block nav-block--primary" aria-label="Primary">
+              <a class="nav-row nav-row--active" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
+                Home
+              </a>
+              <button class="nav-row nav-row--search" type="button">
+                <span class="nav-row__start">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-search.svg" width="14" height="14" alt="" />
+                  Search
+                </span>
+                <span class="nav-row__keys">
+                  <kbd class="kbd kbd--cmd">⌘</kbd>
+                  <kbd class="kbd kbd--key">K</kbd>
+                </span>
+              </button>
+            </nav>
+
+            <nav class="nav-block nav-block--workspace" aria-label="Workspace">
+              <div class="nav-block__heading">Workspace</div>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-apps.svg" width="14" height="14" alt="" />
+                Apps
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-store.svg" width="14" height="14" alt="" />
+                App Store
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-agents.svg" width="14" height="14" alt="" />
+                Zaro Agents
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-robot.svg" width="14" height="14" alt="" />
+                Connected Agents
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-files.svg" width="14" height="14" alt="" />
+                Files
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-dashboard.svg" width="14" height="14" alt="" />
+                Dashboard
+              </a>
+            </nav>
+
+            <nav class="nav-block nav-block--control" aria-label="Control Panel">
+              <div class="nav-block__heading">Control Panel</div>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-skills.svg" width="14" height="14" alt="" />
+                Skills
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-memory.svg" width="14" height="14" alt="" />
+                Memory
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg" width="14" height="14" alt="" />
+                Cost
+              </a>
+              <a class="nav-row" href="#">
+                <img class="nav-row__icon" src="assets/sidebar/icon-connections.svg" width="14" height="14" alt="" />
+                Connections
+              </a>
+            </nav>
+          </div>
+
+          <div class="nav-block nav-block--sessions">
+            <div class="nav-block__heading">
+              Sessions
+              <button class="nav-block__add" type="button" aria-label="New session">
+                <img src="assets/sidebar/icon-plus.svg" width="16" height="16" alt="" />
+              </button>
+            </div>
+            <div class="sessions-list">
+              <div class="session-row">
+                <span class="session-row__label">Add UI toggle to header nav</span>
+                <button class="session-row__menu" type="button" aria-label="Session options">
+                  <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
+                </button>
+              </div>
+              <div class="session-row">
+                <span class="session-row__label">Edit app instructions</span>
+                <button class="session-row__menu" type="button" aria-label="Session options">
+                  <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
+                </button>
+              </div>
+              <div class="session-row">
+                <span class="session-row__label">Design Tracker</span>
+                <button class="session-row__menu" type="button" aria-label="Session options">
+                  <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
+                </button>
+              </div>
+              <div class="session-row">
+                <span class="session-row__label">Redesign App with Skill</span>
+                <button class="session-row__menu" type="button" aria-label="Session options">
+                  <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="sidebar__footer">
+          <a class="nav-row nav-row--help" href="#">
+            <img class="nav-row__icon" src="assets/sidebar/icon-help.svg" width="16" height="16" alt="" />
+            Help
+          </a>
+          <button class="user-menu" type="button">
+            <span class="user-menu__avatar">
+              <span class="user-menu__avatar-inner">S</span>
+            </span>
+            <span class="user-menu__email">sammy@zaro.ai</span>
+          </button>
+        </footer>
+      </div>
+    </aside>
+
+    <!-- Main workspace -->
+    <main class="main">
+      <div class="main__demo-controls">
+        <div class="demo-menu" aria-label="Demo controls">
+          <p class="demo-menu__title">Demo</p>
+          <div class="demo-menu__items">
+            <label class="demo-toggle">
+              <input
+                class="demo-toggle__input"
+                type="checkbox"
+                id="empty-states-demo"
+              />
+              <span class="demo-toggle__switch" aria-hidden="true"></span>
+              <span class="demo-toggle__label">Empty states</span>
+            </label>
+            <button
+              class="demo-menu__btn"
+              type="button"
+              id="replay-intro-demo"
+            >
+              Replay card intro
+            </button>
+            <label class="demo-menu__field">
+              <span class="demo-menu__field-label">Card click</span>
+              <select class="demo-menu__select" id="card-click-mode">
+                <option value="panel" selected>Category panel</option>
+                <option value="option-b" disabled>Option B (soon)</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="main__content">
+        <div class="main__pattern-wrap" aria-hidden="true"></div>
+        <div
+          class="category-card-tooltip"
+          id="category-card-tooltip"
+          role="tooltip"
+          hidden
+        ></div>
+        <div class="cards-orbit cards-orbit--intro-pending" role="list" aria-label="App categories">
+          <article class="category-card category-card--sales" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--sales">
+              <img
+                class="category-card__art"
+                src="assets/cards/sales-6271-145556.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Sales</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--personal" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--personal">
+              <img
+                class="category-card__art"
+                src="assets/cards/personal-pixel.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Personal</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--marketing" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--marketing">
+              <img
+                class="category-card__art"
+                src="assets/cards/marketing-6271-146021.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Marketing</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--product" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--product">
+              <img
+                class="category-card__art"
+                src="assets/cards/product-6271-146481.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Product</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--operations" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--operations">
+              <img
+                class="category-card__art"
+                src="assets/cards/operations-6271-146712.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Operations</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--design" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--design">
+              <img
+                class="category-card__art"
+                src="assets/cards/design-6271-146943.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Design</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--hr" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--hr">
+              <img
+                class="category-card__art"
+                src="assets/cards/hr-legal-6271-147174.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">HR + Legal</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+
+          <article class="category-card category-card--finance" role="listitem"
+            data-ripple-trigger
+          >
+            <div class="category-card__visual category-card__visual--finance">
+              <img
+                class="category-card__art"
+                src="assets/cards/finance-6271-151327.svg"
+                width="100"
+                height="100"
+                alt=""
+              />
+            </div>
+            <div class="category-card__text">
+              <p class="category-card__title">Finance</p>
+              <p class="category-card__count">9 Apps</p>
+            </div>
+          </article>
+        </div>
+
+        <div
+          class="category-panel"
+          id="category-panel"
+          aria-hidden="true"
+          aria-live="polite"
+        >
+          <!-- Figma 6280:28559 — empty category only -->
+          <div class="category-panel__empty-panel" id="category-panel-empty">
+            <div class="category-panel__empty-body">
+              <div class="category-panel__empty-icon-wrap" aria-hidden="true">
+                <img
+                  class="category-panel__empty-icon"
+                  src="assets/category-panel/folder-empty.svg"
+                  width="60"
+                  height="60"
+                  alt=""
+                />
+              </div>
+              <div class="category-panel__empty-copy">
+                <div class="category-panel__empty-text">
+                  <p class="category-panel__empty-title">No apps yet.</p>
+                  <p class="category-panel__empty-subtitle">
+                    Looks like you haven’t built any yet.
+                  </p>
+                </div>
+                <button type="button" class="category-panel__build-btn">
+                  <img
+                    src="assets/category-panel/icon-plus.svg"
+                    width="14"
+                    height="14"
+                    alt=""
+                  />
+                  <span class="category-panel__build-label">Build a sales app</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Figma 6280:32843 — category with apps -->
+          <div class="category-panel__full-panel" id="category-panel-full">
+            <div class="category-panel__apps"></div>
+            <div class="category-panel__footer">
+              <button type="button" class="category-panel__view-all">
+                <span class="category-panel__view-all-label">View all apps</span>
+                <img
+                  src="assets/category-panel/icon-arrow-right.svg"
+                  width="14"
+                  height="14"
+                  alt=""
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <form class="chat-bar" id="chat-bar" role="search" aria-label="Ask anything">
+          <div class="chat-bar__panel">
+            <div class="chat-bar__compact">
+              <div class="chat-bar__field">
+                <button class="chat-bar__attach" type="button" aria-label="Attach file" tabindex="-1">
+                  <img src="assets/main/icon-attach.svg" width="16" height="16" alt="" />
+                </button>
+                <input
+                  class="chat-bar__input-compact"
+                  type="text"
+                  placeholder="Ask anything..."
+                  aria-label="Ask anything"
+                  autocomplete="off"
+                  tabindex="0"
+                />
+              </div>
+              <button class="chat-bar__send" type="submit" aria-label="Send message" tabindex="-1">
+                <img src="assets/main/icon-send.svg" width="16" height="16" alt="" />
+              </button>
+            </div>
+            <div class="chat-bar__expanded" aria-hidden="true">
+              <div class="chat-bar__compose">
+                <textarea
+                  class="chat-bar__textarea"
+                  placeholder="Ask anything... (type / for commands)"
+                  aria-label="Ask anything"
+                  rows="1"
+                  autocomplete="off"
+                ></textarea>
+              </div>
+              <div class="chat-bar__footer">
+                <div class="chat-bar__toolbar">
+                  <div class="chat-bar__tools">
+                    <button class="chat-bar__tool-btn" type="button" aria-label="Attach file">
+                      <img src="assets/main/icon-attach.svg" width="16" height="16" alt="" />
+                    </button>
+                    <button class="chat-bar__tool-btn" type="button" aria-label="Integrations">
+                      <img src="assets/main/icon-integrations.svg" width="16" height="16" alt="" />
+                    </button>
+                    <button class="chat-bar__thinking" type="button">
+                      <img src="assets/main/icon-thinking.svg" width="16" height="16" alt="" />
+                      Thinking
+                    </button>
+                  </div>
+                  <button class="chat-bar__send chat-bar__send--expanded" type="submit" aria-label="Send message">
+                    <img src="assets/main/icon-send.svg" width="16" height="16" alt="" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="view-toggle" role="tablist" aria-label="View mode" hidden>
+        <button class="view-toggle__btn view-toggle__btn--active" type="button" role="tab" aria-selected="true" data-view="categories">Categories</button>
+        <button class="view-toggle__btn" type="button" role="tab" aria-selected="false" data-view="apps">Apps</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="scripts/ripple-background.js?v=5"></script>
+  <script src="scripts/category-select.js?v=16"></script>
+  <script src="scripts/chat.js?v=7"></script>
+  <script src="scripts/cards-intro.js?v=5"></script>
+  <script src="scripts/cards-demo.js?v=2"></script>
+  <script src="scripts/empty-card-ripple.js?v=6"></script>
+  <script>
+    document.querySelectorAll('.view-toggle__btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.view-toggle__btn').forEach((b) => {
+          b.classList.toggle('view-toggle__btn--active', b === btn);
+          b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+        });
+      });
+    });
+  </script>
+  </body>
+</html>

@@ -1,0 +1,469 @@
+/* App Category Card — Figma 6271:145787; layout 6271:134273 */
+
+.cards-orbit {
+  position: relative;
+  /* Square orbit so expanded ring reads as a circle, not an ellipse */
+  --orbit-size: min(746.5px, 90vw, 75vh);
+  width: var(--orbit-size);
+  height: var(--orbit-size);
+  overflow: visible;
+}
+
+.cards-orbit .category-card {
+  position: absolute;
+}
+
+/* Tooltip for mini ring cards while a category is open */
+.category-card-tooltip {
+  position: fixed;
+  z-index: 30;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--nexus-brown);
+  color: var(--nexus-off-white);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 10px)) scale(0.96);
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+  box-shadow:
+    0 1px 2px rgba(32, 22, 19, 0.12),
+    0 6px 16px rgba(32, 22, 19, 0.14);
+}
+
+.category-card-tooltip.is-visible {
+  opacity: 1;
+  transform: translate(-50%, calc(-100% - 10px)) scale(1);
+}
+
+.category-card-tooltip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  background: var(--nexus-brown);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+@keyframes category-card-spiral-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--spiral-x, 0), var(--spiral-y, 0)) scale(0.34);
+    filter: blur(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Hidden until intro vars are set; chat stays usable */
+.cards-orbit--intro-pending .category-card {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cards-orbit--intro .category-card {
+  pointer-events: none;
+  transition: none;
+  animation: category-card-spiral-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--spiral-delay, 0ms);
+}
+
+.category-card {
+  --card-lift-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --card-shadow-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  width: 128px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px;
+  box-shadow: var(--shadow-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  position: relative;
+  isolation: isolate;
+}
+
+.category-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Nexus brown 5% tint on hover */
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: var(--overlay-nexus-5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.45s var(--card-shadow-ease) 0.03s;
+}
+
+/* Extra hover depth only (stay above card bg; children sit at z-index 1) */
+.category-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  box-shadow: var(--shadow-surface-hover);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.5s var(--card-shadow-ease) 0.03s;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+}
+
+.category-card:hover::before {
+  opacity: 1;
+  transition: opacity 0.5s var(--card-shadow-ease) 0.04s;
+}
+
+.category-card:hover::after {
+  opacity: 1;
+  transition: opacity 0.55s var(--card-shadow-ease) 0.04s;
+}
+
+.category-card:not(:hover)::before,
+.category-card:not(:hover)::after {
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Empty category — neutral palette on each category’s own pixel art */
+.category-card--empty {
+  cursor: pointer;
+  background: var(--cloud-50);
+  box-shadow: var(--shadow-surface-empty);
+}
+
+.category-card--empty::before {
+  opacity: 0 !important;
+}
+
+.category-card--empty::after {
+  opacity: 0 !important;
+}
+
+.category-card--empty:hover {
+  transform: none;
+}
+
+.category-card--empty .category-card__visual {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: transparent !important;
+}
+
+/* Disabled plate — 20% cloud-600; pixels stay full strength for ripple */
+.category-card--empty .category-card__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--cloud-600);
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.category-card--empty .category-card__art,
+.category-card--empty .category-card__art-svg {
+  position: relative;
+  z-index: 1;
+  display: block;
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+}
+
+.category-card--empty .category-card__text {
+  position: relative;
+  z-index: 3;
+  opacity: 0.5;
+}
+
+.category-card--empty .category-card__title,
+.category-card--empty .category-card__count {
+  color: var(--umber-500);
+}
+
+.category-card--empty .category-card__title {
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .category-card-tooltip {
+    transition: none;
+  }
+
+  .category-card {
+    transition: transform 0.15s ease;
+  }
+
+  .category-card::before,
+  .category-card::after {
+    transition: opacity 0.15s ease;
+  }
+
+  .category-card--empty .category-card__visual--ripple .category-card__art-svg path {
+    transition: none;
+  }
+
+  .category-card:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.category-card__visual {
+  width: 112px;
+  height: 112px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3.811px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.category-card__art {
+  width: 100px;
+  height: 100px;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* Fallback grid overlay for cards without exported pixel art */
+.category-card__visual--placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 8px 8px;
+  pointer-events: none;
+}
+
+.category-card__visual--placeholder {
+  position: relative;
+}
+
+.category-card__icon {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  z-index: 1;
+}
+
+.category-card__text {
+  width: 100%;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.category-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--umber-500);
+  margin: 0;
+}
+
+.category-card__count {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.25;
+  color: var(--umber-500);
+  margin: 0;
+}
+
+/* Personal — gradient: cloud-500 (bottom) → cloud-300 (top) */
+.category-card__visual--personal {
+  background: linear-gradient(to top, var(--cloud-500) 0%, var(--cloud-300) 100%);
+}
+
+/* Other categories (placeholder until exported from Figma) */
+.category-card__visual--sales {
+  background: linear-gradient(to top, var(--lilac-500) 0%, var(--lilac-300) 100%);
+}
+
+/* Force exact Figma art for Sales if placeholder markup is still present */
+.category-card__visual--sales.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/sales-6271-145556.svg"),
+    linear-gradient(to top, var(--lilac-500) 0%, var(--lilac-300) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--sales.category-card__visual--placeholder::before,
+.category-card__visual--sales.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+.category-card__visual--marketing {
+  background: linear-gradient(to top, var(--yellow-500) 0%, var(--yellow-300) 100%);
+}
+
+/* Force exact Figma art for Marketing if placeholder markup is still present */
+.category-card__visual--marketing.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/marketing-6271-146021.svg"),
+    linear-gradient(to top, var(--yellow-500) 0%, var(--yellow-300) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--marketing.category-card__visual--placeholder::before,
+.category-card__visual--marketing.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+.category-card__visual--product {
+  background: linear-gradient(to top, var(--green-500) 0%, var(--green-300) 100%);
+}
+
+/* Force exact Figma art for Product if placeholder markup is still present */
+.category-card__visual--product.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/product-6271-146481.svg"),
+    linear-gradient(to top, var(--green-500) 0%, var(--green-300) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--product.category-card__visual--placeholder::before,
+.category-card__visual--product.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+.category-card__visual--operations {
+  background: linear-gradient(to top, var(--blue-500) 0%, #a3d7de 100%);
+}
+
+.category-card__visual--design {
+  background: linear-gradient(to top, #72417b 0%, #b072bb 100%);
+}
+
+/* Force exact Figma art for Design if placeholder markup is still present */
+.category-card__visual--design.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/design-6271-146943.svg"),
+    linear-gradient(to top, #72417b 0%, #b072bb 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--design.category-card__visual--placeholder::before,
+.category-card__visual--design.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+.category-card__visual--hr {
+  background: linear-gradient(to top, var(--nexus-mid-brown) 0%, var(--umber-400) 100%);
+}
+
+/* Force exact Figma art for HR + Legal if placeholder markup is still present */
+.category-card__visual--hr.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/hr-legal-6271-147174.svg"),
+    linear-gradient(to top, var(--nexus-mid-brown) 0%, var(--umber-400) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--hr.category-card__visual--placeholder::before,
+.category-card__visual--hr.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+.category-card__visual--finance {
+  background: linear-gradient(to top, var(--orange-500) 0%, var(--orange-300) 100%);
+}
+
+/* Force exact Figma art for Finance if placeholder markup is still present */
+.category-card__visual--finance.category-card__visual--placeholder {
+  background-image:
+    url("../assets/cards/finance-6271-151327.svg"),
+    linear-gradient(to top, var(--orange-500) 0%, var(--orange-300) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: center, center;
+  background-size: 100px 100px, 100% 100%;
+}
+
+.category-card__visual--finance.category-card__visual--placeholder::before,
+.category-card__visual--finance.category-card__visual--placeholder .category-card__icon {
+  display: none;
+}
+
+/* Card positions — Figma Cards frame 6271:134273 */
+.category-card--personal {
+  left: 41.43%;
+  top: 0;
+}
+
+.category-card--sales {
+  left: 11.79%;
+  top: 11.37%;
+}
+
+.category-card--marketing {
+  left: 68.58%;
+  top: 11.37%;
+}
+
+.category-card--product {
+  left: 0;
+  top: 38.37%;
+}
+
+.category-card--operations {
+  right: 0;
+  top: 38.37%;
+}
+
+.category-card--finance {
+  left: 11.79%;
+  bottom: 10.59%;
+}
+
+.category-card--hr {
+  left: 41.43%;
+  bottom: 0;
+}
+
+.category-card--design {
+  right: 14.27%;
+  bottom: 10.59%;
+}

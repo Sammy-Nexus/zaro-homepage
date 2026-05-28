@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="fade" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#c2bfaf" stop-opacity="0.35"/>
+      <stop offset="45%" stop-color="#c2bfaf" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#fafaf8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="29.4" height="29.4" patternUnits="userSpaceOnUse">
+      <rect width="10.55" height="10.55" x="9.4" y="9.4" rx="1" fill="#c2bfaf" fill-opacity="0.22"/>
+    </pattern>
+    <pattern id="dots-lg" width="58.8" height="58.8" patternUnits="userSpaceOnUse">
+      <rect width="21.1" height="21.1" x="18.8" y="18.8" rx="2" fill="#c2bfaf" fill-opacity="0.14"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#dots-lg)"/>
+  <rect width="100%" height="100%" fill="url(#dots)"/>
+  <rect width="100%" height="100%" fill="url(#fade)"/>
+</svg>
