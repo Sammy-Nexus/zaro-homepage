@@ -38,7 +38,7 @@
       if (stored !== null) return stored === "true";
     } catch (_) {}
 
-    return false;
+    return true;
   }
 
   function persistEnabled(enabled) {
@@ -255,11 +255,17 @@
   }
 
   if (toggle instanceof HTMLInputElement) {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "true") toggle.checked = true;
-      if (stored === "false") toggle.checked = false;
-    } catch (_) {}
+    const stored = (() => {
+      try {
+        return localStorage.getItem(STORAGE_KEY);
+      } catch (_) {
+        return null;
+      }
+    })();
+
+    if (stored !== null) {
+      toggle.checked = stored === "true";
+    }
 
     toggle.addEventListener("change", syncFromToggle);
     persistEnabled(toggle.checked);
