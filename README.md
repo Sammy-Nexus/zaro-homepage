@@ -4,7 +4,7 @@ Implementation of the **Home / Default** screen from [Nexus Product Design (Figm
 
 ## Typography
 
-Uses **Saans** (primary brand font) from your local assets, copied to `public/fonts/`.
+Uses **Saans** (primary brand font) from your local assets, copied to `static/fonts/`.
 
 ## Background
 
@@ -31,4 +31,4 @@ Open http://localhost:5173
 - `assets/` — SVG icons
 - `components/RippleBackground.tsx` — animated canvas background (React)
 - `scripts/ripple-background.js` — same behavior wired into the static prototype
-- `public/fonts/` — Saans WOFF2 files
+- `static/fonts/` — Saans WOFF2 files
