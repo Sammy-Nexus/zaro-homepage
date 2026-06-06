@@ -1,5 +1,6 @@
 (function () {
-  const STORAGE_KEY = "zaro-alt-builder-demo";
+  const STORAGE_KEY = "zaro-alt-builder-demo-v2";
+  const LEGACY_STORAGE_KEY = "zaro-alt-builder-demo";
   const BUILDER_TITLE = "Build new app request";
   const HOLD_AFTER_INTRO_MS = 2500;
   const BUILDER_EXIT_MS = 520;
@@ -255,6 +256,10 @@
   }
 
   if (toggle instanceof HTMLInputElement) {
+    try {
+      localStorage.removeItem(LEGACY_STORAGE_KEY);
+    } catch (_) {}
+
     const stored = (() => {
       try {
         return localStorage.getItem(STORAGE_KEY);
@@ -263,9 +268,7 @@
       }
     })();
 
-    if (stored !== null) {
-      toggle.checked = stored === "true";
-    }
+    toggle.checked = stored === null ? true : stored === "true";
 
     toggle.addEventListener("change", syncFromToggle);
     persistEnabled(toggle.checked);
