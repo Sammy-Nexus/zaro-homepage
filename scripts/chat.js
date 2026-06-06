@@ -230,8 +230,22 @@
     }
   }
 
+  function focusTextarea() {
+    const applyFocus = () => {
+      textarea.focus({ preventScroll: true });
+      const end = textarea.value.length;
+      textarea.setSelectionRange(end, end);
+    };
+
+    // Defer past link/button focus so New Task nav clicks land in the input.
+    window.setTimeout(applyFocus, 0);
+  }
+
   function activateChat(initialChar, options = {}) {
-    if (isActive()) return;
+    if (isActive()) {
+      focusTextarea();
+      return;
+    }
 
     const fromClick = Boolean(options.fromClick);
     syncTextareaFromCompact(initialChar);
@@ -240,12 +254,7 @@
     updateChatSize();
     updateSendState();
     scheduleAutoType(fromClick && !initialChar && isChatBlank());
-
-    requestAnimationFrame(() => {
-      textarea.focus();
-      const end = textarea.value.length;
-      textarea.setSelectionRange(end, end);
-    });
+    focusTextarea();
   }
 
   function truncateToOneLine(value) {
@@ -274,7 +283,7 @@
     root.style.setProperty("--chat-expanded-height", `${DEFAULT_CHAT_HEIGHT}px`);
     root.style.setProperty("--chat-extra", "0px");
 
-    main.classList.remove("main--chat-active");
+    main.classList.remove("main--chat-active", "main--chat-draft");
     setChatPanels(false);
     resetChatSize();
     updateSendState();
@@ -354,6 +363,11 @@
     if (autoTypeTypingTimer !== null && !event.metaKey && !event.ctrlKey && !event.altKey) {
       cancelAutoType();
     }
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      if (hasChatText()) chatBar.requestSubmit();
+      return;
+    }
     if (event.key === "Escape") {
       event.preventDefault();
       deactivateChat();
@@ -390,9 +404,27 @@
     textarea.blur();
   }
 
+  function openNewTask() {
+    cancelAutoType();
+    window.CategoryPanel?.deselect?.();
+    window.AltBuilder?.close?.();
+
+    if (isSessionView() || isBuilderView()) {
+      window.Sessions?.exitToOrbit?.({ replayIntro: false });
+    }
+
+    main.classList.remove("main--home-intro-animate", "main--home-intro-settled");
+    document.documentElement.removeAttribute("data-new-task-pending");
+
+    prepareHomeFromSession();
+    main.classList.add("main--chat-draft");
+    activateChat(undefined, { fromClick: true });
+    window.Sessions?.prepareForNewTask?.();
+  }
+
   function resetToHome() {
     prepareHomeFromSession();
-    main.classList.remove("main--chat-active");
+    main.classList.remove("main--chat-active", "main--chat-draft");
   }
 
   function getChatMessage() {
@@ -414,6 +446,8 @@
       sendBtn.classList.add("chat-bar__send--loading");
       sendBtn.disabled = true;
     }
+
+    main.classList.remove("main--chat-draft");
 
     window.setTimeout(() => {
       if (window.AltBuilder?.isEnabled?.()) {
@@ -444,5 +478,8 @@
     syncExpandedLayout: updateChatSize,
     prepareHomeFromSession,
     resetToHome,
+    openNewTask,
+    activateChat,
+    getChatMessage,
   };
 })();

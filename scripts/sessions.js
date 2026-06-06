@@ -3,7 +3,7 @@
   const main = document.getElementById("main");
   const sessionsList = document.getElementById("sessions-list");
   const sessionView = document.getElementById("session-view");
-  const homeNav = document.querySelector('.nav-row[href="index.html"]');
+  const newTaskNav = document.querySelector(".nav-row--new-task");
   const chatBar = document.getElementById("chat-bar");
 
   if (!main || !sessionsList || !sessionView) return;
@@ -25,8 +25,47 @@
     });
   }
 
-  function setHomeNavActive(active) {
-    homeNav?.classList.toggle("nav-row--active", active);
+  function clearActiveTaskRow() {
+    setActiveSessionRow(null);
+  }
+
+  function prepareForNewTask() {
+    activeSessionId = null;
+    clearActiveTaskRow();
+    newTaskNav?.classList.remove("nav-row--active");
+    document.title = "Scaling Europe — Home";
+  }
+
+  function exitToOrbit(options = {}) {
+    const replayIntro = options.replayIntro !== false;
+
+    activeSessionId = null;
+    clearActiveTaskRow();
+    newTaskNav?.classList.remove("nav-row--active");
+
+    window.AltBuilder?.close?.();
+
+    main.classList.remove(
+      "main--session-view",
+      "main--session-chat-visible",
+      "main--session-chat-enter-ready",
+      "main--chat-active",
+      "main--chat-draft",
+      "main--builder-view"
+    );
+    sessionView.hidden = true;
+    document.title = "Scaling Europe — Home";
+
+    window.CategoryPanel?.deselect?.();
+    window.Chat?.resetToHome?.();
+
+    if (replayIntro) {
+      window.CardsIntro?.replayHome?.();
+    }
+  }
+
+  function goHome() {
+    exitToOrbit({ replayIntro: true });
   }
 
   function resetSendState() {
@@ -44,11 +83,12 @@
 
     activeSessionId = sessionId;
     setActiveSessionRow(sessionId);
-    setHomeNavActive(false);
+    newTaskNav?.classList.remove("nav-row--active");
 
     main.classList.remove(
       "main--session-chat-visible",
-      "main--session-chat-enter-ready"
+      "main--session-chat-enter-ready",
+      "main--chat-draft"
     );
     main.classList.add("main--session-view", "main--chat-active");
     sessionView.hidden = false;
@@ -88,36 +128,11 @@
     });
   }
 
-  function goHome() {
-    activeSessionId = null;
-    setActiveSessionRow(null);
-    setHomeNavActive(true);
-
-    window.AltBuilder?.close?.();
-
-    main.classList.remove(
-      "main--session-view",
-      "main--session-chat-visible",
-      "main--session-chat-enter-ready",
-      "main--chat-active",
-      "main--builder-view"
-    );
-    sessionView.hidden = true;
-    document.title = "Scaling Europe — Home";
-
-    window.CardsIntro?.replayHome?.();
-  }
-
-  function handleHomeNavClick(event) {
+  function handleNewTaskNavClick(event) {
     if (main.classList.contains("main--session-view") || main.classList.contains("main--builder-view")) {
       event.preventDefault();
-      goHome();
+      window.Chat?.openNewTask?.();
       return;
-    }
-
-    if (homeNav?.classList.contains("nav-row--active")) {
-      event.preventDefault();
-      window.CardsIntro?.replayHome?.();
     }
   }
 
@@ -148,11 +163,12 @@
   }
 
   function createAndOpen() {
+    const message = window.Chat?.getChatMessage?.() || "";
     sessionCounter += 1;
     const sessionId = `session-new-${sessionCounter}-${Date.now()}`;
     const row = createSessionRow(sessionId, SESSION_TITLE, { animate: true });
     sessionsList.prepend(row);
-    openSessionView(sessionId, "");
+    openSessionView(sessionId, message);
     return sessionId;
   }
 
@@ -166,11 +182,13 @@
     openSessionView(row.dataset.sessionId, "");
   });
 
-  homeNav?.addEventListener("click", handleHomeNavClick);
+  newTaskNav?.addEventListener("click", handleNewTaskNavClick);
 
   window.Sessions = {
     createAndOpen,
     goHome,
+    exitToOrbit,
+    prepareForNewTask,
     open: openSessionView,
   };
 })();

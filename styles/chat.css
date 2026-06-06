@@ -569,6 +569,70 @@
   }
 }
 
+/* Cross-page New Task — show orbit at rest while homepage loads */
+html[data-new-task-pending] .cards-orbit--intro-pending .category-card {
+  opacity: 1;
+  pointer-events: none;
+}
+
+html[data-new-task-pending] .cards-orbit--intro-pending ~ .chat-bar {
+  transform: scale(1);
+}
+
+/* Draft compose — New Task entry: calmer orbit, no session takeover */
+.main--chat-active.main--chat-draft .main__pattern-wrap {
+  filter: blur(6px);
+  opacity: 0.72;
+}
+
+.main--chat-active.main--chat-draft .cards-orbit {
+  transform: scale(0.94);
+}
+
+.main--chat-active.main--chat-draft .category-card {
+  filter: blur(3px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.main--chat-active.main--chat-draft .category-card--personal {
+  transform: translate3d(0, calc(-1 * var(--chat-extra) * 0.35), 0);
+}
+
+.main--chat-active.main--chat-draft .category-card--hr {
+  transform: translate3d(0, calc(var(--chat-extra) * 0.35), 0);
+}
+
+.main--chat-active.main--chat-draft .category-card--product {
+  transform: translate3d(calc(-120px - var(--chat-extra) * 0.35), 0, 0);
+}
+
+.main--chat-active.main--chat-draft .category-card--operations {
+  transform: translate3d(calc(120px + var(--chat-extra) * 0.35), 0, 0);
+}
+
+.main--chat-active.main--chat-draft .category-card--sales,
+.main--chat-active.main--chat-draft .category-card--finance {
+  transform: translate3d(calc(-36px - var(--chat-extra) * 0.2), 0, 0);
+}
+
+.main--chat-active.main--chat-draft .category-card--marketing,
+.main--chat-active.main--chat-draft .category-card--design {
+  transform: translate3d(calc(42px + var(--chat-extra) * 0.2), 0, 0);
+}
+
+@media (max-width: 1100px) {
+  .main--chat-active.main--chat-draft .cards-orbit {
+    transform: scale(0.82);
+  }
+}
+
+@media (max-width: 900px) {
+  .main--chat-active.main--chat-draft .cards-orbit {
+    transform: scale(0.68);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .chat-bar,
   .chat-bar__panel,
@@ -585,3 +649,4 @@
     transform: scale(1);
   }
 }
+

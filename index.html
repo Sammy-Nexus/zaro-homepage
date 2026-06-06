@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-branch="test-v2">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaro — Scaling Europe</title>
+    <script src="scripts/branch-label.js"></script>
+    <script>
+      (function () {
+        if (new URL(location.href, location.origin).searchParams.get("new-task") !== "1") return;
+        document.documentElement.setAttribute("data-new-task-pending", "");
+      })();
+    </script>
     <link rel="preload" href="assets/category-panel/app-preview.png" as="image" />
-    <link rel="stylesheet" href="styles/main.css?v=159" />
+    <link rel="stylesheet" href="styles/main.css?v=174" />
   </head>
   <body>
   <div class="app">
@@ -13,9 +20,9 @@
     <aside class="sidebar" aria-label="Main navigation">
       <div class="sidebar__panel">
         <header class="sidebar__header">
-          <div class="sidebar__logo">
+          <a class="sidebar__logo" href="index.html" aria-label="Home">
             <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
-          </div>
+          </a>
           <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
             <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
           </button>
@@ -34,9 +41,9 @@
         <div class="sidebar__scroll">
           <div class="sidebar__nav-group">
             <nav class="nav-block nav-block--primary" aria-label="Primary">
-              <a class="nav-row nav-row--active" href="index.html">
-                <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
-                Home
+              <a class="nav-row nav-row--new-task" href="index.html?new-task=1">
+                <img class="nav-row__icon" src="assets/sidebar/icon-new-task.svg" width="14" height="14" alt="" />
+                New Task
               </a>
               <button class="nav-row nav-row--search" type="button">
                 <span class="nav-row__start">
@@ -101,33 +108,33 @@
 
           <div class="nav-block nav-block--sessions">
             <div class="nav-block__heading">
-              Sessions
-              <button class="nav-block__add" type="button" aria-label="New session">
+              Tasks
+              <button class="nav-block__add" type="button" aria-label="New task">
                 <img src="assets/sidebar/icon-plus.svg" width="16" height="16" alt="" />
               </button>
             </div>
             <div class="sessions-list" id="sessions-list">
               <div class="session-row" data-session-id="session-1">
                 <span class="session-row__label">Add UI toggle to header nav</span>
-                <button class="session-row__menu" type="button" aria-label="Session options">
+                <button class="session-row__menu" type="button" aria-label="Task options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
               <div class="session-row" data-session-id="session-2">
                 <span class="session-row__label">Edit app instructions</span>
-                <button class="session-row__menu" type="button" aria-label="Session options">
+                <button class="session-row__menu" type="button" aria-label="Task options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
               <div class="session-row" data-session-id="session-3">
                 <span class="session-row__label">Design Tracker</span>
-                <button class="session-row__menu" type="button" aria-label="Session options">
+                <button class="session-row__menu" type="button" aria-label="Task options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
               <div class="session-row" data-session-id="session-4">
                 <span class="session-row__label">Redesign App with Skill</span>
-                <button class="session-row__menu" type="button" aria-label="Session options">
+                <button class="session-row__menu" type="button" aria-label="Task options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
@@ -523,12 +530,13 @@
   <script src="scripts/scaling-demo.js?v=1"></script>
   <script src="scripts/page-nav.js?v=2"></script>
   <script src="scripts/category-select.js?v=34"></script>
-  <script src="scripts/builder-loader.js?v=10"></script>
+  <script src="scripts/builder-loader.js?v=11"></script>
   <script src="scripts/builder-feed.js?v=9"></script>
-  <script src="scripts/alt-builder-demo.js?v=12"></script>
-  <script src="scripts/sessions.js?v=7"></script>
-  <script src="scripts/chat.js?v=16"></script>
-  <script src="scripts/cards-intro.js?v=6"></script>
+  <script src="scripts/alt-builder-demo.js?v=13"></script>
+  <script src="scripts/sessions.js?v=9"></script>
+  <script src="scripts/chat.js?v=23"></script>
+  <script src="scripts/cards-intro.js?v=7"></script>
+  <script src="scripts/new-task.js?v=4"></script>
   <script src="scripts/demo-modal.js?v=3"></script>
   <script src="scripts/cards-demo.js?v=5"></script>
   <script src="scripts/empty-card-ripple.js?v=6"></script>

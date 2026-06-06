@@ -6,6 +6,9 @@
   const BUILDER_PATTERN_RETURN_MS = 600;
   const STATUS_PILL_STEP = "Creating agents...";
 
+  const LOADER_INTERVAL_MS = 800;
+  const LOADER_WAVE_MS = 700;
+
   const toggle = document.getElementById("alt-builder-demo");
   const main = document.getElementById("main");
   const builderView = document.getElementById("builder-view");
@@ -107,7 +110,7 @@
     statusPillText.textContent = pillStep;
 
     const pulseInterval =
-      window.BuilderLoader?.PULSE_INTERVAL_MS ?? 1000;
+      window.BuilderLoader?.PULSE_INTERVAL_MS ?? LOADER_INTERVAL_MS;
 
     statusPill.style.setProperty("--builder-pulse-duration", `${pulseInterval}ms`);
     statusPill.removeAttribute("hidden");
@@ -130,6 +133,8 @@
       window.BuilderLoader?.mountSmall?.(statusPillLoader, {
         color: "#BDB4F8",
         opacity: 1,
+        interval: LOADER_INTERVAL_MS,
+        waveDuration: LOADER_WAVE_MS,
         onPulse: pulsePillShimmer,
       }) ?? null;
 
@@ -154,7 +159,7 @@
       }) ?? null;
 
     const pulseInterval =
-      window.BuilderLoader?.PULSE_INTERVAL_MS ?? 1000;
+      window.BuilderLoader?.PULSE_INTERVAL_MS ?? LOADER_INTERVAL_MS;
 
     builderView?.style.setProperty(
       "--builder-pulse-duration",
@@ -163,6 +168,8 @@
 
     loaderInstance =
       window.BuilderLoader?.mount?.(builderLoader, {
+        interval: LOADER_INTERVAL_MS,
+        waveDuration: LOADER_WAVE_MS,
         onPulse: () => feedController?.pulseShimmer?.(),
         onIntroComplete: scheduleReturnHomeAfterIntro,
       }) ?? null;

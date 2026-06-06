@@ -136,11 +136,21 @@
     playIntro();
   }
 
+  function isNewTaskEntry() {
+    return new URL(window.location.href).searchParams.get("new-task") === "1";
+  }
+
   window.CardsIntro = { play: playIntro, replayHome: replayHomeIntro };
 
   if (replayBtn) {
     replayBtn.disabled = prefersReducedMotion;
     replayBtn.addEventListener("click", replayHomeIntro);
+  }
+
+  if (isNewTaskEntry()) {
+    finishPending();
+    endHomeChatIntro();
+    return;
   }
 
   if (!cards.length || prefersReducedMotion) {

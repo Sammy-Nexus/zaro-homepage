@@ -26,12 +26,12 @@
       </section>
 
       <p class="page__note">
-        Self-contained ripple loader from the Zaro alt builder. Upload this folder as-is —
-        no build step or dependencies required.
+        Slim loader build — pre-generated pattern pool, eased center-out ripple.
+        Upload this folder as-is — no build step or dependencies required.
       </p>
     </main>
 
-    <script src="ripple-loader.js"></script>
+    <script src="ripple-loader-slim.js?v=2"></script>
     <script>
       (function () {
         const main = document.getElementById("loader-main");
@@ -40,11 +40,15 @@
         window.RippleLoader.mount(main, {
           color: "#C2BFAF",
           opacity: 0.45,
+          interval: 800,
+          waveDuration: 700,
         });
 
         window.RippleLoader.mountSmall(pill, {
           color: "#BDB4F8",
           opacity: 1,
+          interval: 800,
+          waveDuration: 700,
         });
       })();
     </script>

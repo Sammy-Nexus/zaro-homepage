@@ -1,5 +1,25 @@
 /**
- * BuilderLoader — ripple-loader-slim.js (pattern pool + eased ripple)
+ * RippleLoader — slim version
+ *
+ * 9×9 (or 5×5) animated loader. Pre-generates a pool of patterns at module
+ * load and cycles through them randomly on each pulse — no per-pulse
+ * mutation logic. Ripple expands outward from center ring-by-ring with an
+ * eased curve. Only the cells that differ between the previous and next
+ * pattern actually re-animate during a morph.
+ *
+ * Public API:
+ *   window.RippleLoader.mount(container, options?)
+ *   window.RippleLoader.mountSmall(container, options?)   // 5×5
+ *
+ * Options:
+ *   color          (default "#C2BFAF")
+ *   opacity        (default 0.45)
+ *   interval       (default 1000ms — set to waveDuration for continuous)
+ *   waveDuration   (default 700ms)
+ *   gridSize       (9 or 5; default 9)
+ *   onPulse, onIntroComplete: callbacks
+ *
+ * Returns: { destroy() }
  */
 (function () {
   const CELL_SIZE = 10;

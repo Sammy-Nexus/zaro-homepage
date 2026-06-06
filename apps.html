@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-branch="test-v2">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zaro — Scaling Europe</title>
+    <script src="scripts/branch-label.js"></script>
     <link rel="stylesheet" href="styles/main.css?v=155" />
   </head>
   <body>
@@ -11,9 +12,9 @@
       <aside class="sidebar" aria-label="Main navigation">
         <div class="sidebar__panel">
           <header class="sidebar__header">
-            <div class="sidebar__logo">
+            <a class="sidebar__logo" href="index.html" aria-label="Home">
               <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
-            </div>
+            </a>
             <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
               <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
             </button>
@@ -32,9 +33,9 @@
           <div class="sidebar__scroll">
             <div class="sidebar__nav-group">
               <nav class="nav-block nav-block--primary" aria-label="Primary">
-                <a class="nav-row" href="index.html">
-                  <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
-                  Home
+                <a class="nav-row nav-row--new-task" href="index.html?new-task=1">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-new-task.svg" width="14" height="14" alt="" />
+                  New Task
                 </a>
                 <button class="nav-row nav-row--search" type="button">
                   <span class="nav-row__start">
