@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ripple Loader</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="demo" aria-labelledby="demo-main-label">
+        <p class="demo__label" id="demo-main-label">Alt builder — main loader (9×9)</p>
+        <div class="demo__frame demo__frame--main">
+          <div class="demo__loader demo__loader--main" id="loader-main"></div>
+        </div>
+      </section>
+
+      <section class="demo" aria-labelledby="demo-pill-label">
+        <p class="demo__label" id="demo-pill-label">Alt builder — status pill (5×5)</p>
+        <div class="demo__frame demo__frame--pill">
+          <div class="pill">
+            <div class="demo__loader demo__loader--pill" id="loader-pill"></div>
+            <span class="pill__text">Thinking</span>
+          </div>
+        </div>
+      </section>
+
+      <p class="page__note">
+        Self-contained ripple loader from the Zaro alt builder. Upload this folder as-is —
+        no build step or dependencies required.
+      </p>
+    </main>
+
+    <script src="ripple-loader.js"></script>
+    <script>
+      (function () {
+        const main = document.getElementById("loader-main");
+        const pill = document.getElementById("loader-pill");
+
+        window.RippleLoader.mount(main, {
+          color: "#C2BFAF",
+          opacity: 0.45,
+        });
+
+        window.RippleLoader.mountSmall(pill, {
+          color: "#BDB4F8",
+          opacity: 1,
+        });
+      })();
+    </script>
+  </body>
+</html>
