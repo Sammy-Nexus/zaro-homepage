@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zaro — Home</title>
+    <title>Zaro — Scaling Europe</title>
     <link rel="preload" href="assets/category-panel/app-preview.png" as="image" />
-    <link rel="stylesheet" href="styles/main.css?v=91" />
+    <link rel="stylesheet" href="styles/main.css?v=159" />
   </head>
   <body>
   <div class="app">
@@ -23,8 +23,8 @@
 
         <div class="sidebar__workspace">
           <button class="workspace-selector" type="button">
-            <span class="workspace-selector__icon">Z</span>
-            <span class="workspace-selector__label">Zaro’s Workspace</span>
+            <span class="workspace-selector__icon">S</span>
+            <span class="workspace-selector__label">Scaling Europe</span>
             <span class="workspace-selector__chevron-wrap" aria-hidden="true">
               <img src="assets/sidebar/icon-chevron.svg" width="16" height="16" alt="" />
             </span>
@@ -34,7 +34,7 @@
         <div class="sidebar__scroll">
           <div class="sidebar__nav-group">
             <nav class="nav-block nav-block--primary" aria-label="Primary">
-              <a class="nav-row nav-row--active" href="#">
+              <a class="nav-row nav-row--active" href="index.html">
                 <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
                 Home
               </a>
@@ -52,7 +52,7 @@
 
             <nav class="nav-block nav-block--workspace" aria-label="Workspace">
               <div class="nav-block__heading">Workspace</div>
-              <a class="nav-row" href="#">
+              <a class="nav-row" href="apps.html">
                 <img class="nav-row__icon" src="assets/sidebar/icon-apps.svg" width="14" height="14" alt="" />
                 Apps
               </a>
@@ -60,7 +60,7 @@
                 <img class="nav-row__icon" src="assets/sidebar/icon-store.svg" width="14" height="14" alt="" />
                 App Store
               </a>
-              <a class="nav-row" href="#">
+              <a class="nav-row" href="agents.html">
                 <img class="nav-row__icon" src="assets/sidebar/icon-agents.svg" width="14" height="14" alt="" />
                 Zaro Agents
               </a>
@@ -68,7 +68,7 @@
                 <img class="nav-row__icon" src="assets/sidebar/icon-robot.svg" width="14" height="14" alt="" />
                 Connected Agents
               </a>
-              <a class="nav-row" href="#">
+              <a class="nav-row" href="files.html">
                 <img class="nav-row__icon" src="assets/sidebar/icon-files.svg" width="14" height="14" alt="" />
                 Files
               </a>
@@ -89,8 +89,8 @@
                 Memory
               </a>
               <a class="nav-row" href="#">
-                <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg" width="14" height="14" alt="" />
-                Cost
+                <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg?v=3" width="14" height="14" alt="" />
+                Usage
               </a>
               <a class="nav-row" href="#">
                 <img class="nav-row__icon" src="assets/sidebar/icon-connections.svg" width="14" height="14" alt="" />
@@ -106,26 +106,26 @@
                 <img src="assets/sidebar/icon-plus.svg" width="16" height="16" alt="" />
               </button>
             </div>
-            <div class="sessions-list">
-              <div class="session-row">
+            <div class="sessions-list" id="sessions-list">
+              <div class="session-row" data-session-id="session-1">
                 <span class="session-row__label">Add UI toggle to header nav</span>
                 <button class="session-row__menu" type="button" aria-label="Session options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
-              <div class="session-row">
+              <div class="session-row" data-session-id="session-2">
                 <span class="session-row__label">Edit app instructions</span>
                 <button class="session-row__menu" type="button" aria-label="Session options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
-              <div class="session-row">
+              <div class="session-row" data-session-id="session-3">
                 <span class="session-row__label">Design Tracker</span>
                 <button class="session-row__menu" type="button" aria-label="Session options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
                 </button>
               </div>
-              <div class="session-row">
+              <div class="session-row" data-session-id="session-4">
                 <span class="session-row__label">Redesign App with Skill</span>
                 <button class="session-row__menu" type="button" aria-label="Session options">
                   <img src="assets/sidebar/icon-session-menu.svg" width="14" height="14" alt="" />
@@ -136,53 +136,31 @@
         </div>
 
         <footer class="sidebar__footer">
-          <a class="nav-row nav-row--help" href="#">
+          <button
+            class="nav-row nav-row--help"
+            id="demo-modal-trigger"
+            type="button"
+            aria-haspopup="dialog"
+            aria-controls="demo-modal"
+            aria-expanded="false"
+          >
             <img class="nav-row__icon" src="assets/sidebar/icon-help.svg" width="16" height="16" alt="" />
             Help
-          </a>
+          </button>
           <button class="user-menu" type="button">
             <span class="user-menu__avatar">
               <span class="user-menu__avatar-inner">S</span>
             </span>
-            <span class="user-menu__email">sammy@zaro.ai</span>
+            <span class="user-menu__email">Seb Johnson</span>
           </button>
         </footer>
       </div>
     </aside>
 
     <!-- Main workspace -->
-    <main class="main">
-      <div class="main__demo-controls">
-        <div class="demo-menu" aria-label="Demo controls">
-          <p class="demo-menu__title">Demo</p>
-          <div class="demo-menu__items">
-            <label class="demo-toggle">
-              <input
-                class="demo-toggle__input"
-                type="checkbox"
-                id="empty-states-demo"
-              />
-              <span class="demo-toggle__switch" aria-hidden="true"></span>
-              <span class="demo-toggle__label">Empty states</span>
-            </label>
-            <button
-              class="demo-menu__btn"
-              type="button"
-              id="replay-intro-demo"
-            >
-              Replay card intro
-            </button>
-            <label class="demo-menu__field">
-              <span class="demo-menu__field-label">Card click</span>
-              <select class="demo-menu__select" id="card-click-mode">
-                <option value="panel" selected>Category panel</option>
-                <option value="option-b" disabled>Option B (soon)</option>
-              </select>
-            </label>
-          </div>
-        </div>
-      </div>
+    <main class="main" id="main">
       <div class="main__content">
+        <div class="main__home" id="main-home">
         <div class="main__pattern-wrap" aria-hidden="true"></div>
         <div
           class="category-card-tooltip"
@@ -376,7 +354,10 @@
 
           <!-- Figma 6280:32843 — category with apps -->
           <div class="category-panel__full-panel" id="category-panel-full">
-            <div class="category-panel__apps"></div>
+            <div class="category-panel__apps-scroll">
+              <div class="category-panel__apps"></div>
+              <div class="category-panel__apps-fade" aria-hidden="true"></div>
+            </div>
             <div class="category-panel__footer">
               <button type="button" class="category-panel__view-all">
                 <span class="category-panel__view-all-label">View all apps</span>
@@ -389,6 +370,16 @@
               </button>
             </div>
           </div>
+        </div>
+        </div>
+
+        <div class="session-view" id="session-view" hidden>
+          <div class="session-view__body" id="session-view-body"></div>
+        </div>
+
+        <div class="builder-view" id="builder-view" hidden>
+          <div class="builder-view__loader" id="builder-loader" aria-hidden="true"></div>
+          <div class="builder-view__feed" id="builder-feed" aria-live="polite"></div>
         </div>
 
         <form class="chat-bar" id="chat-bar" role="search" aria-label="Ask anything">
@@ -408,7 +399,13 @@
                 />
               </div>
               <button class="chat-bar__send" type="submit" aria-label="Send message" tabindex="-1">
-                <img src="assets/main/icon-send.svg" width="16" height="16" alt="" />
+                <svg class="chat-bar__send-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M9.69067 14.4573C9.71599 14.5205 9.76003 14.5743 9.81685 14.6117C9.87367 14.6491 9.94057 14.6682 10.0086 14.6664C10.0766 14.6647 10.1424 14.6422 10.1972 14.602C10.2521 14.5617 10.2933 14.5057 10.3153 14.4413L14.6487 1.77467C14.67 1.7156 14.6741 1.65167 14.6604 1.59037C14.6467 1.52907 14.6159 1.47293 14.5715 1.42852C14.5271 1.38411 14.4709 1.35326 14.4096 1.33959C14.3483 1.32593 14.2844 1.33 14.2253 1.35133L1.55867 5.68467C1.49433 5.70673 1.43828 5.74795 1.39805 5.80278C1.35781 5.85762 1.33531 5.92345 1.33357 5.99144C1.33183 6.05943 1.35093 6.12633 1.38831 6.18315C1.42568 6.23997 1.47954 6.28401 1.54267 6.30933L6.82933 8.42933C6.99646 8.49625 7.1483 8.59631 7.27571 8.72349C7.40312 8.85067 7.50345 9.00233 7.57067 9.16933L9.69067 14.4573Z" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14.5693 1.43133L7.276 8.724" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="chat-bar__send-loader" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                </span>
               </button>
             </div>
             <div class="chat-bar__expanded" aria-hidden="true">
@@ -436,7 +433,13 @@
                     </button>
                   </div>
                   <button class="chat-bar__send chat-bar__send--expanded" type="submit" aria-label="Send message">
-                    <img src="assets/main/icon-send.svg" width="16" height="16" alt="" />
+                    <svg class="chat-bar__send-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M9.69067 14.4573C9.71599 14.5205 9.76003 14.5743 9.81685 14.6117C9.87367 14.6491 9.94057 14.6682 10.0086 14.6664C10.0766 14.6647 10.1424 14.6422 10.1972 14.602C10.2521 14.5617 10.2933 14.5057 10.3153 14.4413L14.6487 1.77467C14.67 1.7156 14.6741 1.65167 14.6604 1.59037C14.6467 1.52907 14.6159 1.47293 14.5715 1.42852C14.5271 1.38411 14.4709 1.35326 14.4096 1.33959C14.3483 1.32593 14.2844 1.33 14.2253 1.35133L1.55867 5.68467C1.49433 5.70673 1.43828 5.74795 1.39805 5.80278C1.35781 5.85762 1.33531 5.92345 1.33357 5.99144C1.33183 6.05943 1.35093 6.12633 1.38831 6.18315C1.42568 6.23997 1.47954 6.28401 1.54267 6.30933L6.82933 8.42933C6.99646 8.49625 7.1483 8.59631 7.27571 8.72349C7.40312 8.85067 7.50345 9.00233 7.57067 9.16933L9.69067 14.4573Z" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14.5693 1.43133L7.276 8.724" stroke="currentColor" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="chat-bar__send-loader" aria-hidden="true">
+                      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -449,14 +452,85 @@
         <button class="view-toggle__btn view-toggle__btn--active" type="button" role="tab" aria-selected="true" data-view="categories">Categories</button>
         <button class="view-toggle__btn" type="button" role="tab" aria-selected="false" data-view="apps">Apps</button>
       </div>
+
+      <div
+        class="builder-status-pill"
+        id="builder-status-pill"
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <div class="builder-status-pill__loader" id="builder-status-pill-loader" aria-hidden="true"></div>
+        <span class="builder-status-pill__text">Creating agents...</span>
+      </div>
     </main>
   </div>
 
-  <script src="scripts/ripple-background.js?v=5"></script>
-  <script src="scripts/category-select.js?v=16"></script>
-  <script src="scripts/chat.js?v=7"></script>
-  <script src="scripts/cards-intro.js?v=5"></script>
-  <script src="scripts/cards-demo.js?v=2"></script>
+  <div class="demo-modal" id="demo-modal" hidden>
+    <button class="demo-modal__backdrop" type="button" aria-label="Close demo controls" tabindex="-1"></button>
+    <div
+      class="demo-modal__panel demo-menu"
+      id="demo-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="demo-modal-title"
+    >
+      <p class="demo-menu__title" id="demo-modal-title">Demo</p>
+      <div class="demo-menu__items">
+        <label class="demo-toggle">
+          <input class="demo-toggle__input" type="checkbox" id="empty-states-demo" />
+          <span class="demo-toggle__switch" aria-hidden="true"></span>
+          <span class="demo-toggle__label">Empty states</span>
+        </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="scaling-europe-demo" checked />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Scaling Europe demo</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-agent-table-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alt agent table design</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-builder-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alternative builder</span>
+          </label>
+          <label class="demo-toggle">
+          <input class="demo-toggle__input" type="checkbox" id="auto-type-demo" />
+          <span class="demo-toggle__switch" aria-hidden="true"></span>
+          <span class="demo-toggle__label">Auto type</span>
+        </label>
+        <label class="demo-menu__field">
+          <span class="demo-menu__field-label">Auto type script</span>
+          <textarea
+            class="demo-menu__textarea"
+            id="auto-type-text"
+            rows="3"
+            placeholder="Paste demo message…"
+            spellcheck="false"
+          >Build me a social media content engine: agents to pull tech news, post to LinkedIn, and analyze performance — plus an app to manage it all.</textarea>
+        </label>
+        <button class="demo-menu__btn" type="button" id="replay-intro-demo">
+          Replay card intro
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/ripple-background.js?v=7"></script>
+  <script src="scripts/scaling-demo.js?v=1"></script>
+  <script src="scripts/page-nav.js?v=2"></script>
+  <script src="scripts/category-select.js?v=34"></script>
+  <script src="scripts/builder-loader.js?v=10"></script>
+  <script src="scripts/builder-feed.js?v=9"></script>
+  <script src="scripts/alt-builder-demo.js?v=12"></script>
+  <script src="scripts/sessions.js?v=7"></script>
+  <script src="scripts/chat.js?v=16"></script>
+  <script src="scripts/cards-intro.js?v=6"></script>
+  <script src="scripts/demo-modal.js?v=3"></script>
+  <script src="scripts/cards-demo.js?v=5"></script>
   <script src="scripts/empty-card-ripple.js?v=6"></script>
   <script>
     document.querySelectorAll('.view-toggle__btn').forEach((btn) => {

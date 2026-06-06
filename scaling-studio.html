@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaro — Scaling Studio</title>
+    <link rel="stylesheet" href="styles/main.css?v=170" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="sidebar__panel">
+          <header class="sidebar__header">
+            <div class="sidebar__logo">
+              <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
+            </div>
+            <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
+              <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
+            </button>
+          </header>
+
+          <div class="sidebar__workspace">
+            <button class="workspace-selector" type="button">
+              <span class="workspace-selector__icon">S</span>
+              <span class="workspace-selector__label">Scaling Europe</span>
+              <span class="workspace-selector__chevron-wrap" aria-hidden="true">
+                <img src="assets/sidebar/icon-chevron.svg" width="16" height="16" alt="" />
+              </span>
+            </button>
+          </div>
+
+          <div class="sidebar__scroll">
+            <div class="sidebar__nav-group">
+              <nav class="nav-block nav-block--primary" aria-label="Primary">
+                <a class="nav-row" href="index.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
+                  Home
+                </a>
+                <button class="nav-row nav-row--search" type="button">
+                  <span class="nav-row__start">
+                    <img class="nav-row__icon" src="assets/sidebar/icon-search.svg" width="14" height="14" alt="" />
+                    Search
+                  </span>
+                  <span class="nav-row__keys">
+                    <kbd class="kbd kbd--cmd">⌘</kbd>
+                    <kbd class="kbd kbd--key">K</kbd>
+                  </span>
+                </button>
+              </nav>
+
+              <nav class="nav-block nav-block--workspace" aria-label="Workspace">
+                <div class="nav-block__heading">Workspace</div>
+                <a class="nav-row nav-row--active" href="apps.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-apps.svg" width="14" height="14" alt="" />
+                  Apps
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-store.svg" width="14" height="14" alt="" />
+                  App Store
+                </a>
+                <a class="nav-row" href="agents.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-agents.svg" width="14" height="14" alt="" />
+                  Zaro Agents
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-robot.svg" width="14" height="14" alt="" />
+                  Connected Agents
+                </a>
+                <a class="nav-row" href="files.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-files.svg" width="14" height="14" alt="" />
+                  Files
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-dashboard.svg" width="14" height="14" alt="" />
+                  Dashboard
+                </a>
+              </nav>
+
+              <nav class="nav-block nav-block--control" aria-label="Control Panel">
+                <div class="nav-block__heading">Control Panel</div>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-skills.svg" width="14" height="14" alt="" />
+                  Skills
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-memory.svg" width="14" height="14" alt="" />
+                  Memory
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg?v=3" width="14" height="14" alt="" />
+                  Usage
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-connections.svg" width="14" height="14" alt="" />
+                  Connections
+                </a>
+              </nav>
+            </div>
+
+            <div class="nav-block nav-block--apps" id="sidebar-apps-section" hidden>
+              <div class="nav-block__heading">Apps</div>
+              <div class="sidebar-apps-list">
+                <button
+                  type="button"
+                  class="sidebar-app-row sidebar-app-row--active"
+                  data-app-slug="scaling-studio"
+                  aria-current="page"
+                >
+                  <img
+                    class="sidebar-app-row__icon"
+                    src="assets/sidebar/icon-briefcase.svg"
+                    width="16"
+                    height="16"
+                    alt=""
+                  />
+                  <span class="sidebar-app-row__label">Scaling Studio</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <footer class="sidebar__footer">
+            <button
+              class="nav-row nav-row--help"
+              id="demo-modal-trigger"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="demo-modal"
+              aria-expanded="false"
+            >
+              <img class="nav-row__icon" src="assets/sidebar/icon-help.svg" width="16" height="16" alt="" />
+              Help
+            </button>
+            <button class="user-menu" type="button">
+              <span class="user-menu__avatar">
+                <span class="user-menu__avatar-inner">S</span>
+              </span>
+              <span class="user-menu__email">Seb Johnson</span>
+            </button>
+          </footer>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="main__content scaling-studio-page scaling-studio-page--intro">
+        <header class="scaling-studio-page__topbar agents-page__topbar">
+          <nav class="agents-breadcrumb" aria-label="Breadcrumb">
+            <a class="agents-breadcrumb__home" href="index.html" aria-label="Home">
+              <img src="assets/agents/icon-breadcrumb-home.svg" width="14" height="14" alt="" />
+            </a>
+            <span class="agents-breadcrumb__sep" aria-hidden="true">
+              <img src="assets/agents/icon-breadcrumb-chevron.svg" width="14" height="14" alt="" />
+            </span>
+            <a class="scaling-studio-breadcrumb__link" href="apps.html">apps</a>
+            <span class="agents-breadcrumb__sep" aria-hidden="true">
+              <img src="assets/agents/icon-breadcrumb-chevron.svg" width="14" height="14" alt="" />
+            </span>
+            <span class="scaling-studio-breadcrumb__current">Scaling Studio</span>
+          </nav>
+          <div class="agents-topbar__actions">
+            <button class="agents-icon-btn" type="button" aria-label="Show activity">
+              <img src="assets/agents/icon-activity.svg" width="16" height="16" alt="" />
+            </button>
+            <button class="agents-icon-btn" type="button" aria-label="Show files">
+              <img src="assets/agents/icon-files-panel.svg" width="16" height="16" alt="" />
+            </button>
+          </div>
+        </header>
+
+        <div class="scaling-studio-page__body">
+          <div class="scaling-studio-page__app" aria-label="Scaling Studio">
+            <header class="scaling-studio-page__toolbar">
+              <div class="scaling-studio-page__toolbar-start">
+                <h1 class="scaling-studio-page__title">Scaling Studio</h1>
+                <span class="scaling-studio-page__badge">
+                  <img src="assets/scaling-studio/icon-thinking.svg" width="12" height="12" alt="" />
+                  Thinking
+                </span>
+              </div>
+              <div class="scaling-studio-page__toolbar-actions">
+                <button class="scaling-studio-page__btn" type="button">
+                  <img src="assets/scaling-studio/icon-edit-chat.svg" width="16" height="16" alt="" />
+                  Edit via Chat
+                </button>
+                <div class="scaling-studio-page__toggle">
+                  <img src="assets/scaling-studio/icon-auto-improve.svg" width="14" height="14" alt="" />
+                  Auto-improve
+                  <span class="scaling-studio-page__toggle-pill">Off</span>
+                </div>
+                <button class="scaling-studio-page__btn scaling-studio-page__btn--ghost" type="button">
+                  <img src="assets/agents/icon-refresh.svg" width="16" height="16" alt="" />
+                  Refresh
+                </button>
+                <button class="scaling-studio-page__btn scaling-studio-page__btn--ghost scaling-studio-page__btn--icon" type="button" aria-label="More actions">
+                  <img src="assets/scaling-studio/icon-more.svg" width="16" height="16" alt="" />
+                </button>
+              </div>
+            </header>
+
+            <div class="scaling-studio-page__frame-shell">
+              <iframe
+                class="scaling-studio-page__frame"
+                src="scaling-studio/app.html?v=8"
+                title="Scaling Studio application"
+                loading="eager"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="demo-modal" id="demo-modal" hidden>
+      <button class="demo-modal__backdrop" type="button" aria-label="Close demo controls" tabindex="-1"></button>
+      <div
+        class="demo-modal__panel demo-menu"
+        id="demo-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-modal-title"
+      >
+        <p class="demo-menu__title" id="demo-modal-title">Demo</p>
+        <div class="demo-menu__items">
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="scaling-europe-demo" checked />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Scaling Europe demo</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/scaling-demo.js?v=1"></script>
+    <script src="scripts/demo-modal.js?v=3"></script>
+    <script src="scripts/page-nav.js?v=2"></script>
+    <script src="scripts/apps-nav.js?v=1"></script>
+    <script src="scripts/scaling-studio-page.js?v=1"></script>
+  </body>
+</html>

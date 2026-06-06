@@ -7,9 +7,9 @@
   top: 0;
   bottom: 0;
   z-index: 20;
-  width: min(522px, calc(100vw - 80px));
+  width: min(462px, calc(100vw - 80px));
   height: fit-content;
-  max-height: min(520px, calc(100vh - 160px));
+  max-height: min(460px, calc(100vh - 160px));
   margin: auto;
   opacity: 0;
   visibility: hidden;
@@ -24,12 +24,12 @@
   display: none;
 }
 
-/* ─── Empty panel (6280:28559) — Figma 400×440 ─── */
+/* ─── Empty panel — 340×380 (60px smaller than Figma 400×440) ─── */
 .category-panel--show-empty {
-  --category-empty-width: 400px;
-  --category-empty-height: 440px;
+  --category-empty-width: 340px;
+  --category-empty-height: 380px;
   --category-empty-pad: 16px;
-  --category-empty-body-h: 208px;
+  --category-empty-body-h: 148px;
   --category-empty-icon-gap: 24px;
   --category-empty-copy-gap: 16px;
   --category-empty-text-gap: 4px;
@@ -141,13 +141,46 @@
   display: block;
 }
 
-/* ─── Full panel (6280:32843) — Figma 522×522, apps stack 440px ─── */
+/* ─── Full panel — 462×462, apps stack 380px ─── */
 .category-panel--show-full {
-  --category-full-width: 522px;
-  --category-full-height: 522px;
-  --category-full-apps-h: 440px;
+  --category-full-width: 462px;
+  --category-full-height: 462px;
+  --category-full-apps-h: 380px;
   width: min(var(--category-full-width), calc(100vw - 80px));
   max-height: none;
+}
+
+.category-panel--show-full.category-panel--apps-1,
+.category-panel--show-full.category-panel--apps-2,
+.category-panel--show-full.category-panel--apps-3,
+.category-panel--show-full.category-panel--apps-4 {
+  height: auto;
+}
+
+.category-panel--show-full.category-panel--apps-1 .category-panel__full-panel,
+.category-panel--show-full.category-panel--apps-2 .category-panel__full-panel,
+.category-panel--show-full.category-panel--apps-3 .category-panel__full-panel,
+.category-panel--show-full.category-panel--apps-4 .category-panel__full-panel {
+  height: auto;
+  max-height: none;
+}
+
+.category-panel--show-full.category-panel--apps-1 .category-panel__apps-scroll,
+.category-panel--show-full.category-panel--apps-2 .category-panel__apps-scroll,
+.category-panel--show-full.category-panel--apps-3 .category-panel__apps-scroll,
+.category-panel--show-full.category-panel--apps-4 .category-panel__apps-scroll {
+  flex: 0 0 auto;
+  height: auto;
+  overflow: visible;
+}
+
+.category-panel--show-full.category-panel--apps-1 .category-panel__apps,
+.category-panel--show-full.category-panel--apps-2 .category-panel__apps,
+.category-panel--show-full.category-panel--apps-3 .category-panel__apps,
+.category-panel--show-full.category-panel--apps-4 .category-panel__apps {
+  height: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 .category-panel--show-full .category-panel__full-panel {
@@ -155,10 +188,20 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  min-height: var(--category-full-height);
+  height: var(--category-full-height);
+  min-height: 0;
+  max-height: var(--category-full-height);
   padding: 16px;
   background: transparent;
   border-radius: 0;
+  overflow: hidden;
+}
+
+.category-panel__apps-scroll {
+  position: relative;
+  flex: 0 0 var(--category-full-apps-h, 380px);
+  height: var(--category-full-apps-h, 380px);
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -166,10 +209,38 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1 1 auto;
-  min-height: var(--category-full-apps-h, 440px);
-  max-height: var(--category-full-apps-h, 440px);
+  height: 100%;
+  max-height: 100%;
+  overflow-x: hidden;
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cloud-300) transparent;
+}
+
+.category-panel__apps::-webkit-scrollbar {
+  width: 6px;
+}
+
+.category-panel__apps::-webkit-scrollbar-thumb {
+  background: var(--cloud-300);
+  border-radius: 3px;
+}
+
+.category-panel__apps-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 64px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #fff 100%);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.category-panel__apps-scroll--fade .category-panel__apps-fade {
+  opacity: 1;
 }
 
 .category-panel__app-row {
@@ -177,7 +248,8 @@
   align-items: stretch;
   gap: 8px;
   width: 100%;
-  max-width: 490px;
+  max-width: 100%;
+  min-width: 0;
   padding: 9px;
   border: 1px solid rgba(218, 216, 206, 0.8);
   border-radius: 12px;
@@ -192,6 +264,16 @@
 .category-panel__app-row:hover {
   border-color: var(--cloud-200);
   background: var(--cloud-50);
+}
+
+.category-panel__app-row:active,
+.category-panel__app-row--activating {
+  border-color: var(--cloud-300);
+  background: var(--cloud-100);
+}
+
+.category-panel__app-row--activating {
+  pointer-events: none;
 }
 
 /* App thumb — Figma 6282:35908 */
@@ -249,6 +331,22 @@
   display: block;
   object-fit: cover;
   object-position: top center;
+}
+
+.category-panel__app-thumb-shot--fit-width {
+  background: #fff;
+}
+
+.category-panel__app-thumb-shot--fit-width img {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: block;
+  object-position: top center;
+}
+
+.category-panel__app-thumb--custom-preview .category-panel__app-thumb-pattern {
+  display: none;
 }
 
 /* Skeleton loaders (fallback while apps hydrate) */
@@ -491,13 +589,13 @@
 
 /* ─── Category selected — chat morphs into panel ─── */
 .main--category-panel-target-empty {
-  --panel-morph-width: 400px;
-  --panel-morph-height: 440px;
+  --panel-morph-width: 340px;
+  --panel-morph-height: 380px;
 }
 
 .main--category-panel-target-full {
-  --panel-morph-width: 522px;
-  --panel-morph-height: 522px;
+  --panel-morph-width: 462px;
+  --panel-morph-height: 462px;
 }
 
 /* Category open: panel only; chat hidden until dismiss shrink */
@@ -566,13 +664,13 @@
 }
 
 .main--category-selected.main--category-morphing .category-panel__empty-body,
-.main--category-selected.main--category-morphing .category-panel__apps,
+.main--category-selected.main--category-morphing .category-panel__apps-scroll,
 .main--category-selected.main--category-morphing .category-panel__footer {
   opacity: 0;
 }
 
 .main--category-selected.main--category-morphing.main--category-morphing-expanded .category-panel__empty-body,
-.main--category-selected.main--category-morphing.main--category-morphing-expanded .category-panel__apps,
+.main--category-selected.main--category-morphing.main--category-morphing-expanded .category-panel__apps-scroll,
 .main--category-selected.main--category-morphing.main--category-morphing-expanded .category-panel__footer {
   opacity: 1;
   transition: opacity 0.22s var(--chat-ease) 0.22s;
@@ -580,7 +678,7 @@
 
 /* Close: folder panel shrinks on top; chat revealed underneath at compact size */
 .main--category-dismissing .category-panel__empty-body,
-.main--category-dismissing .category-panel__apps,
+.main--category-dismissing .category-panel__apps-scroll,
 .main--category-dismissing .category-panel__footer {
   opacity: 0;
   transition: opacity 0.1s var(--chat-ease);
@@ -656,17 +754,33 @@
 
 /* Open complete / category switch while open */
 .main--category-selected.main--category-morph-complete .category-panel,
-.main--category-selected:not(.main--category-morphing) .category-panel {
+.main--category-selected:not(.main--category-morphing):not(.main--category-dismissing)
+  .category-panel {
   opacity: 1;
   visibility: visible;
+  top: 50%;
+  bottom: auto;
   width: min(var(--panel-morph-width), calc(100vw - 80px));
   height: fit-content;
   max-height: min(var(--panel-morph-height), calc(100vh - 160px));
   border-radius: 16px;
   pointer-events: none;
+  transform: translateY(-50%);
 }
 
 .main--category-selected.main--category-morph-complete.main--category-panel-target-empty .category-panel {
+  max-height: none;
+}
+
+/* ≤4 apps: content-sized — drop max-height cap only (keep fit-content; auto + top/bottom stretches full page) */
+.main--category-selected.main--category-morph-complete.main--panel-apps-1 .category-panel,
+.main--category-selected.main--category-morph-complete.main--panel-apps-2 .category-panel,
+.main--category-selected.main--category-morph-complete.main--panel-apps-3 .category-panel,
+.main--category-selected.main--category-morph-complete.main--panel-apps-4 .category-panel,
+.main--category-selected:not(.main--category-morphing).main--panel-apps-1 .category-panel,
+.main--category-selected:not(.main--category-morphing).main--panel-apps-2 .category-panel,
+.main--category-selected:not(.main--category-morphing).main--panel-apps-3 .category-panel,
+.main--category-selected:not(.main--category-morphing).main--panel-apps-4 .category-panel {
   max-height: none;
 }
 
@@ -729,18 +843,17 @@
 @media (max-width: 900px) {
   .category-panel,
   .category-panel--show-empty {
-    max-width: min(400px, calc(100vw - 32px));
+    max-width: min(340px, calc(100vw - 32px));
   }
 
   .category-panel--show-empty {
-    --category-empty-height: min(440px, calc(100vh - 120px));
+    --category-empty-height: min(380px, calc(100vh - 120px));
   }
 
   .category-panel--show-full {
-    --category-full-height: min(522px, calc(100vh - 120px));
-    --category-full-apps-h: min(440px, calc(100vh - 200px));
+    --category-full-height: min(462px, calc(100vh - 120px));
+    --category-full-apps-h: min(380px, calc(100vh - 200px));
   }
-
 }
 
 @media (prefers-reduced-motion: reduce) {

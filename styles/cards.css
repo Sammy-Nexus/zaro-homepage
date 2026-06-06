@@ -4,6 +4,10 @@
   position: relative;
   /* Square orbit so expanded ring reads as a circle, not an ellipse */
   --orbit-size: min(746.5px, 90vw, 75vh);
+  --card-width: 128px;
+  --card-height: 179px;
+  /* Card centers on a circle — equal 45° spacing from top (-90°) */
+  --orbit-radius: calc((var(--orbit-size) - var(--card-width)) / 2);
   width: var(--orbit-size);
   height: var(--orbit-size);
   overflow: visible;
@@ -427,43 +431,44 @@
   display: none;
 }
 
-/* Card positions — Figma Cards frame 6271:134273 */
-.category-card--personal {
-  left: 41.43%;
-  top: 0;
+/* Card positions — equal radial ring (8 × 45°, from top clockwise) */
+.cards-orbit .category-card {
+  --orbit-x: calc(cos(var(--orbit-angle)) * var(--orbit-radius));
+  --orbit-y: calc(sin(var(--orbit-angle)) * var(--orbit-radius));
+  left: calc(50% + var(--orbit-x) - var(--card-width) / 2);
+  top: calc(50% + var(--orbit-y) - var(--card-height) / 2);
+  right: auto;
+  bottom: auto;
 }
 
-.category-card--sales {
-  left: 11.79%;
-  top: 11.37%;
+.category-card--personal {
+  --orbit-angle: -90deg;
 }
 
 .category-card--marketing {
-  left: 68.58%;
-  top: 11.37%;
-}
-
-.category-card--product {
-  left: 0;
-  top: 38.37%;
+  --orbit-angle: -45deg;
 }
 
 .category-card--operations {
-  right: 0;
-  top: 38.37%;
-}
-
-.category-card--finance {
-  left: 11.79%;
-  bottom: 10.59%;
-}
-
-.category-card--hr {
-  left: 41.43%;
-  bottom: 0;
+  --orbit-angle: 0deg;
 }
 
 .category-card--design {
-  right: 14.27%;
-  bottom: 10.59%;
+  --orbit-angle: 45deg;
+}
+
+.category-card--hr {
+  --orbit-angle: 90deg;
+}
+
+.category-card--finance {
+  --orbit-angle: 135deg;
+}
+
+.category-card--sales {
+  --orbit-angle: -135deg;
+}
+
+.category-card--product {
+  --orbit-angle: 180deg;
 }

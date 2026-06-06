@@ -92,6 +92,17 @@
   };
 
   const APP_PREVIEW_SRC = "assets/category-panel/app-preview.png";
+  const SCALING_STUDIO_THUMB_SRC = "assets/category-panel/scaling-studio-thumb.png";
+  const SCALING_STUDIO_APP = {
+    title: "Scaling Studio",
+    appSlug: "scaling-studio",
+    status: "Running",
+    folders: "12",
+    settings: "3",
+    team: "Team Zaro",
+    previewSrc: SCALING_STUDIO_THUMB_SRC,
+    hideTeamTag: true,
+  };
   let appPreviewReady = false;
 
   (function preloadAppPreview() {
@@ -121,7 +132,9 @@
   const panel = document.getElementById("category-panel");
   const buildBtnLabel = panel?.querySelector(".category-panel__build-label");
   const viewAllBtn = panel?.querySelector(".category-panel__view-all-label");
+  const viewAllButton = panel?.querySelector(".category-panel__view-all");
   const appsList = panel?.querySelector(".category-panel__apps");
+  const appsScrollWrap = panel?.querySelector(".category-panel__apps-scroll");
   const emptyTitle = panel?.querySelector(".category-panel__empty-title");
   const emptySubtitle = panel?.querySelector(".category-panel__empty-subtitle");
   const tooltip = document.getElementById("category-card-tooltip");
@@ -192,6 +205,11 @@
     return `Build a ${name} app`;
   }
 
+  function isScalingEuropeDemoEnabled() {
+    if (window.ScalingDemo?.isEnabled) return window.ScalingDemo.isEnabled();
+    return Boolean(document.getElementById("scaling-europe-demo")?.checked);
+  }
+
   function getAppCount(card) {
     const countEl = card.querySelector(".category-card__count");
     if (countEl?.dataset.defaultCount) {
@@ -218,7 +236,32 @@
     return Math.abs(h);
   }
 
+  function shouldShowScalingStudioApp() {
+    return (
+      isScalingEuropeDemoEnabled() ||
+      Boolean(window.AltBuilder?.hasScalingStudioApp?.())
+    );
+  }
+
   function buildAppsForCount(count, categorySlug, nameGeneration) {
+    if (categorySlug === "operations") {
+      if (shouldShowScalingStudioApp()) {
+        return [{ ...SCALING_STUDIO_APP }];
+      }
+
+      const pool = APP_NAMES_BY_CATEGORY.operations;
+      const stats = APP_STAT_TEMPLATES[0];
+      return [
+        {
+          title: pool[0],
+          status: stats.status,
+          folders: String(stats.folders),
+          settings: String(stats.settings),
+          team: stats.team,
+        },
+      ];
+    }
+
     const pool =
       APP_NAMES_BY_CATEGORY[categorySlug] || APP_NAMES_BY_CATEGORY.product;
     const rand = seededRandom(hashSlug(categorySlug, nameGeneration));
@@ -262,15 +305,26 @@
 
   function renderAppRow(app, categorySlug) {
     const thumbClass = categorySlug
-      ? `category-panel__app-thumb category-panel__app-thumb--${categorySlug}`
-      : "category-panel__app-thumb";
+      ? `category-panel__app-thumb category-panel__app-thumb--${categorySlug}${app.previewSrc ? " category-panel__app-thumb--custom-preview" : ""}`
+      : `category-panel__app-thumb${app.previewSrc ? " category-panel__app-thumb--custom-preview" : ""}`;
+    const previewSrc = app.previewSrc || APP_PREVIEW_SRC;
+    const shotClass = app.previewSrc
+      ? "category-panel__app-thumb-shot category-panel__app-thumb-shot--fit-width"
+      : "category-panel__app-thumb-shot";
+    const patternHtml = app.previewSrc
+      ? ""
+      : '<div class="category-panel__app-thumb-pattern" aria-hidden="true"></div>';
+    const teamTagHtml = app.hideTeamTag
+      ? ""
+      : `<span class="category-panel__team-tag">${app.team}</span>`;
+    const appSlugAttr = app.appSlug ? ` data-app-slug="${app.appSlug}"` : "";
 
     return `
-      <button type="button" class="category-panel__app-row">
+      <button type="button" class="category-panel__app-row"${appSlugAttr}>
         <div class="${thumbClass}">
-          <div class="category-panel__app-thumb-pattern" aria-hidden="true"></div>
-          <div class="category-panel__app-thumb-shot">
-            <img src="${APP_PREVIEW_SRC}" alt="" width="132" height="120" loading="eager" decoding="async" />
+          ${patternHtml}
+          <div class="${shotClass}">
+            <img src="${previewSrc}" alt="" loading="eager" decoding="async" />
           </div>
         </div>
         <div class="category-panel__app-body">
@@ -290,7 +344,7 @@
                 ${app.settings}
               </span>
             </div>
-            <span class="category-panel__team-tag">${app.team}</span>
+            ${teamTagHtml}
           </div>
         </div>
       </button>
@@ -304,6 +358,17 @@
     const rowsHtml = apps.map((app) => renderAppRow(app, slug)).join("");
     appsList.innerHTML = rowsHtml;
     appsList.classList.remove("category-panel__apps--loading");
+    appsList.scrollTop = 0;
+    requestAnimationFrame(() => {
+      applyCompactPanelMorphHeight();
+      if (
+        main.classList.contains("main--category-morph-complete") ||
+        !main.classList.contains("main--category-morphing")
+      ) {
+        syncPanelLayoutHeight();
+      }
+      updateAppsScrollFade();
+    });
     return { slug, count, rowsHtml };
   }
 
@@ -349,9 +414,82 @@
     main.classList.toggle("main--category-panel-target-full", !empty);
   }
 
+  function clearPanelAppCount() {
+    if (!panel) return;
+    panel.classList.remove(
+      "category-panel--apps-1",
+      "category-panel--apps-2",
+      "category-panel--apps-3",
+      "category-panel--apps-4"
+    );
+    main.classList.remove(
+      "main--panel-apps-1",
+      "main--panel-apps-2",
+      "main--panel-apps-3",
+      "main--panel-apps-4"
+    );
+  }
+
+  function getPanelAppCount() {
+    if (!panel) return 0;
+    if (panel.classList.contains("category-panel--apps-1")) return 1;
+    if (panel.classList.contains("category-panel--apps-2")) return 2;
+    if (panel.classList.contains("category-panel--apps-3")) return 3;
+    if (panel.classList.contains("category-panel--apps-4")) return 4;
+    return 5;
+  }
+
+  function applyCompactPanelMorphHeight() {
+    const count = getPanelAppCount();
+    if (count === 0 || count > 4) return;
+
+    const fullPanel = panel?.querySelector(".category-panel__full-panel");
+    if (!fullPanel) return;
+
+    const height = Math.ceil(fullPanel.scrollHeight);
+    if (height < 180) return;
+
+    panel.style.removeProperty("--category-full-height");
+    main.style.setProperty("--panel-morph-height", `${height}px`);
+  }
+
+  function syncPanelLayoutHeight() {
+    const fullPanel = panel?.querySelector(".category-panel__full-panel");
+    if (!fullPanel || !panel?.classList.contains("category-panel--show-full")) return;
+
+    if (getPanelAppCount() <= 4) {
+      if (main.classList.contains("main--category-morphing")) return;
+      requestAnimationFrame(() => applyCompactPanelMorphHeight());
+      return;
+    }
+
+    // While morphing the panel is still chat-compact (~48px); measuring then crops the folder
+    if (main.classList.contains("main--category-morphing")) return;
+
+    const measure = () => {
+      if (main.classList.contains("main--category-morphing")) return;
+
+      const height = Math.ceil(fullPanel.scrollHeight);
+      if (height < 200) return;
+
+      panel.style.setProperty("--category-full-height", `${height}px`);
+      main.style.setProperty("--panel-morph-height", `${height}px`);
+    };
+
+    requestAnimationFrame(measure);
+  }
+
+  function setPanelAppCount(count) {
+    clearPanelAppCount();
+    if (count > 4) return;
+    panel?.classList.add(`category-panel--apps-${count}`);
+    main.classList.add(`main--panel-apps-${count}`);
+  }
+
   function startPanelMorph() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       main.classList.add("main--category-morph-complete");
+      syncPanelLayoutHeight();
       return;
     }
 
@@ -370,6 +508,7 @@
       );
       main.classList.add("main--category-morph-complete");
       morphTimer = null;
+      syncPanelLayoutHeight();
     }, PANEL_MORPH_OPEN_MS);
   }
 
@@ -452,6 +591,7 @@
     panel.setAttribute("aria-label", `${meta.title} category`);
 
     if (nextMode === "empty") {
+      clearPanelAppCount();
       if (prevMode !== "empty") {
         panel.classList.remove("category-panel--show-full");
         panel.classList.add("category-panel--show-empty");
@@ -466,6 +606,7 @@
         panel.classList.remove("category-panel--show-empty");
         panel.classList.add("category-panel--show-full");
       }
+      setPanelAppCount(getAppCount(card));
       bumpAppNamesGeneration(slug);
       renderFullApps(card, appNamesGeneration);
       if (viewAllBtn) viewAllBtn.textContent = meta.viewAll;
@@ -517,20 +658,48 @@
     restLayout = cardMap;
   }
 
-  /** Resting orbit radius × 1.6 so the ring always expands outward on click. */
-  const RING_EXPAND_FACTOR = 1.6;
+  /** Resting orbit radius × factor — cards push outward on category click. */
+  const RING_EXPAND_FACTOR = 1.35;
+  const RING_EXPAND_RADIUS_OFFSET = 60;
+  const APPS_SCROLL_FADE_THRESHOLD = 16;
+
+  function updateAppsScrollFade() {
+    if (!appsList || !appsScrollWrap) return;
+
+    const count = appsList.querySelectorAll(
+      ".category-panel__app-row:not(.category-panel__app-row--skeleton)"
+    ).length;
+    if (count > 0 && count <= 4) {
+      appsScrollWrap.classList.remove("category-panel__apps-scroll--fade");
+      return;
+    }
+
+    const hasOverflow = appsList.scrollHeight > appsList.clientHeight + 1;
+    const nearBottom =
+      appsList.scrollTop + appsList.clientHeight >=
+      appsList.scrollHeight - APPS_SCROLL_FADE_THRESHOLD;
+
+    appsScrollWrap.classList.toggle(
+      "category-panel__apps-scroll--fade",
+      hasOverflow && !nearBottom
+    );
+  }
 
   function getExpandedRingRadiusPx(cx, cy) {
     if (!restLayout || restLayout.size === 0) {
       const size = Math.min(orbit.clientWidth, orbit.clientHeight);
-      return size * 0.4 * RING_EXPAND_FACTOR;
+      const restR = size * 0.4;
+      return Math.max(restR, restR * RING_EXPAND_FACTOR - RING_EXPAND_RADIUS_OFFSET);
     }
 
     let maxRestR = 0;
     for (const { restX, restY } of restLayout.values()) {
       maxRestR = Math.max(maxRestR, Math.hypot(restX - cx, restY - cy));
     }
-    return maxRestR * RING_EXPAND_FACTOR;
+    return Math.max(
+      maxRestR,
+      maxRestR * RING_EXPAND_FACTOR - RING_EXPAND_RADIUS_OFFSET
+    );
   }
 
   function clearRadialPush() {
@@ -586,11 +755,25 @@
     }
   }
 
-  function selectCard(card) {
+  function getSelectedCard() {
+    if (!selectedSlug) return null;
+    return cards.find((card) => getCardSlug(card) === selectedSlug) || null;
+  }
+
+  function refreshCurrentApps() {
+    const card = getSelectedCard();
+    if (!card || isEmptyCard(card)) return;
+
+    bumpAppNamesGeneration(getCardSlug(card));
+    renderFullApps(card, appNamesGeneration);
+  }
+
+  function selectCard(card, options = {}) {
     const slug = getCardSlug(card);
     if (!slug) return;
 
     const alreadyOpen = main.classList.contains("main--category-selected");
+    const immediateBgDim = Boolean(options.immediateBgDim);
 
     deactivateChatIfNeeded();
     hideCategoryTooltip();
@@ -608,10 +791,21 @@
     panel.setAttribute("aria-hidden", "false");
 
     if (!alreadyOpen) {
+      applyCompactPanelMorphHeight();
       startPanelMorph();
-      scheduleBgDimAfterWave();
+      if (immediateBgDim) {
+        clearBgDimSchedule();
+        applyBgDim();
+      } else {
+        scheduleBgDimAfterWave();
+      }
     } else {
       main.classList.add("main--category-morph-complete");
+      applyCompactPanelMorphHeight();
+      if (immediateBgDim) {
+        clearBgDimSchedule();
+        applyBgDim();
+      }
     }
 
     syncOrbitRingAfterLayout();
@@ -629,6 +823,9 @@
       "main--category-selected--bg-dimmed"
     );
     panel.classList.remove("category-panel--show-empty", "category-panel--show-full");
+    clearPanelAppCount();
+    panel.style.removeProperty("--category-full-height");
+    main.style.removeProperty("--panel-morph-height");
     panel.setAttribute("aria-hidden", "true");
     if (appsList) {
       appsList.classList.remove("category-panel__apps--loading");
@@ -723,18 +920,46 @@
     if (!target) return;
     if (target.closest(".category-card")) return;
     if (target.closest(".category-panel")) return;
-    if (target.closest(".main__demo-controls")) return;
+    if (target.closest(".demo-modal")) return;
+    if (target.closest("#demo-modal-trigger")) return;
     deselect();
   });
 
   window.addEventListener("resize", () => {
     if (selectedSlug) {
       applyOrbitRing();
+      updateAppsScrollFade();
       return;
     }
     restLayout = null;
     captureRestLayout();
   });
+
+  if (appsList) {
+    appsList.addEventListener("scroll", updateAppsScrollFade, { passive: true });
+    appsList.addEventListener("click", (event) => {
+      const row = event.target.closest(
+        ".category-panel__app-row:not(.category-panel__app-row--skeleton)"
+      );
+      if (!row || !appsList.contains(row)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const slug = row.dataset.appSlug;
+      if (slug && window.PageNav?.navigateToApp) {
+        window.PageNav.navigateToApp(slug, row);
+        return;
+      }
+      window.PageNav?.navigateToApps(row);
+    });
+  }
+
+  if (viewAllButton) {
+    viewAllButton.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      window.PageNav?.navigateToApps();
+    });
+  }
 
   if (document.readyState === "complete") {
     captureRestLayout();
@@ -742,5 +967,15 @@
     window.addEventListener("load", captureRestLayout, { once: true });
   }
 
-  window.CategoryPanel = { select: selectCard, deselect };
+  function selectBySlug(slug, options = {}) {
+    const card = cards.find((item) => getCardSlug(item) === slug);
+    if (card) selectCard(card, options);
+  }
+
+  window.CategoryPanel = {
+    select: selectCard,
+    selectBySlug,
+    deselect,
+    refreshApps: refreshCurrentApps,
+  };
 })();

@@ -2,6 +2,20 @@
   const toggle = document.getElementById("empty-states-demo");
   const cards = [...document.querySelectorAll(".category-card")];
 
+  function isOperationsCard(card) {
+    return card.classList.contains("category-card--operations");
+  }
+
+  function setOperationsAppCount(card) {
+    const countEl = card.querySelector(".category-card__count");
+    if (!countEl) return;
+
+    countEl.dataset.defaultCount = "1";
+    countEl.textContent = "1 App";
+    card.classList.remove("category-card--empty");
+    card.removeAttribute("aria-disabled");
+  }
+
   if (!cards.length) return;
 
   function randomAppCount() {
@@ -13,6 +27,11 @@
   }
 
   cards.forEach((card) => {
+    if (isOperationsCard(card)) {
+      setOperationsAppCount(card);
+      return;
+    }
+
     const countEl = card.querySelector(".category-card__count");
     if (!countEl) return;
 
@@ -21,39 +40,45 @@
     countEl.textContent = formatAppCount(count);
   });
 
-  if (!toggle) return;
+  if (toggle) {
+    function setCardEmpty(card, empty) {
+      if (isOperationsCard(card)) {
+        setOperationsAppCount(card);
+        return;
+      }
 
-  function setCardEmpty(card, empty) {
-    const countEl = card.querySelector(".category-card__count");
-    const defaultCount = countEl?.dataset.defaultCount || "9";
+      const countEl = card.querySelector(".category-card__count");
+      const defaultCount = countEl?.dataset.defaultCount || "9";
 
-    card.classList.toggle("category-card--empty", empty);
-    card.removeAttribute("aria-disabled");
+      card.classList.toggle("category-card--empty", empty);
+      card.removeAttribute("aria-disabled");
 
-    if (countEl) {
-      countEl.textContent = empty
-        ? "0 Apps"
-        : formatAppCount(Number(defaultCount));
+      if (countEl) {
+        countEl.textContent = empty
+          ? "0 Apps"
+          : formatAppCount(Number(defaultCount));
+      }
     }
-  }
 
-  function randomizeEmptyStates() {
-    const shuffled = [...cards].sort(() => Math.random() - 0.5);
-    const emptyCount = 1 + Math.floor(Math.random() * (cards.length - 1));
+    function randomizeEmptyStates() {
+      const candidates = cards.filter((card) => !isOperationsCard(card));
+      const shuffled = [...candidates].sort(() => Math.random() - 0.5);
+      const emptyCount = 1 + Math.floor(Math.random() * Math.max(1, candidates.length - 1));
 
-    cards.forEach((card) => setCardEmpty(card, false));
-    shuffled.slice(0, emptyCount).forEach((card) => setCardEmpty(card, true));
-  }
-
-  function clearEmptyStates() {
-    cards.forEach((card) => setCardEmpty(card, false));
-  }
-
-  toggle.addEventListener("change", () => {
-    if (toggle.checked) {
-      randomizeEmptyStates();
-      return;
+      cards.forEach((card) => setCardEmpty(card, false));
+      shuffled.slice(0, emptyCount).forEach((card) => setCardEmpty(card, true));
     }
-    clearEmptyStates();
-  });
+
+    function clearEmptyStates() {
+      cards.forEach((card) => setCardEmpty(card, false));
+    }
+
+    toggle.addEventListener("change", () => {
+      if (toggle.checked) {
+        randomizeEmptyStates();
+        return;
+      }
+      clearEmptyStates();
+    });
+  }
 })();

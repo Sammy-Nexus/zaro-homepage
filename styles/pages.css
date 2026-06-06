@@ -1,0 +1,200 @@
+:root {
+  --page-nav-duration: 0.42s;
+  --page-nav-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.main__content--page {
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 64px 72px;
+}
+
+.page-placeholder {
+  max-width: 480px;
+}
+
+.page-placeholder__title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--nexus-brown);
+  margin-bottom: 8px;
+}
+
+.page-placeholder__subtitle {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--nexus-mid-brown);
+}
+
+.apps-hub__header {
+  margin-bottom: 28px;
+}
+
+.apps-hub__title {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--nexus-brown);
+  margin-bottom: 8px;
+}
+
+.apps-hub__subtitle {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--nexus-mid-brown);
+}
+
+.apps-hub__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: min(560px, 100%);
+  padding: 16px;
+  border: 1px solid var(--cloud-200);
+  border-radius: 14px;
+  background: #fff;
+  text-align: left;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+.apps-hub__card:hover {
+  border-color: var(--cloud-300);
+  box-shadow: 0 4px 16px rgba(32, 22, 19, 0.08);
+  transform: translateY(-1px);
+}
+
+.apps-hub__card:active {
+  transform: translateY(0);
+}
+
+.apps-hub__card.category-panel__app-row--activating {
+  transform: scale(0.98);
+  opacity: 0.85;
+}
+
+.apps-hub__card-thumb {
+  width: 120px;
+  height: 76px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--cloud-100);
+}
+
+.apps-hub__card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apps-hub__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.apps-hub__card-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--nexus-brown);
+}
+
+.apps-hub__card-desc {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--nexus-mid-brown);
+}
+
+.apps-hub__card-meta {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.apps-hub__stat {
+  font-size: 12px;
+  line-height: 1.3;
+  color: var(--nexus-mid-brown);
+}
+
+/* App click → apps page transition */
+.app--page-navigating .agents-app-preview {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transition: none;
+}
+
+.app--page-navigating .main__pattern-wrap,
+.app--page-navigating .cards-orbit,
+.app--page-navigating .chat-bar,
+.app--page-navigating .main__demo-controls,
+.app--page-navigating .agents-page,
+.app--page-navigating .scaling-studio-page {
+  opacity: 0;
+  filter: blur(10px);
+  transition:
+    opacity var(--page-nav-duration) var(--page-nav-ease),
+    filter var(--page-nav-duration) var(--page-nav-ease),
+    transform var(--page-nav-duration) var(--page-nav-ease);
+}
+
+.app--page-navigating .chat-bar {
+  transform: scale(0.92);
+}
+
+.app--page-navigating .main--category-selected .category-panel {
+  visibility: visible;
+  pointer-events: none;
+  transform: scale(1.04);
+  opacity: 0;
+  transition:
+    opacity calc(var(--page-nav-duration) * 0.72) var(--page-nav-ease) 0.08s,
+    transform var(--page-nav-duration) var(--page-nav-ease),
+    visibility 0s;
+}
+
+.app--page-enter .main__content {
+  transform-origin: center center;
+  opacity: 0;
+  transform: scale(0.96);
+  filter: blur(6px);
+}
+
+.app--page-enter-active .main__content {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  transition:
+    opacity var(--page-nav-duration) var(--page-nav-ease),
+    transform var(--page-nav-duration) var(--page-nav-ease),
+    filter var(--page-nav-duration) var(--page-nav-ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app--page-enter .main__content,
+  .app--page-enter-active .main__content,
+  .app--page-navigating .main__pattern-wrap,
+  .app--page-navigating .cards-orbit,
+  .app--page-navigating .chat-bar,
+  .app--page-navigating .main__demo-controls,
+  .app--page-navigating .main--category-selected .category-panel,
+  .app--page-navigating .agents-page,
+  .app--page-navigating .scaling-studio-page,
+  .app--page-navigating .agents-app-preview {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

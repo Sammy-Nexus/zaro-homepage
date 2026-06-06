@@ -2,6 +2,7 @@
   const INTRO_DURATION_MS = 500;
   const INTRO_STAGGER_MS = 42;
 
+  const main = document.getElementById("main");
   const orbit = document.querySelector(".cards-orbit");
   if (!orbit) return;
 
@@ -29,12 +30,29 @@
     });
   }
 
+  function startHomeChatIntro() {
+    if (!main || prefersReducedMotion) return;
+
+    main.classList.remove("main--home-intro-settled");
+    main.classList.add("main--home-intro-animate");
+    void main.offsetWidth;
+
+    requestAnimationFrame(() => {
+      main.classList.add("main--home-intro-settled");
+    });
+  }
+
+  function endHomeChatIntro() {
+    main?.classList.remove("main--home-intro-animate", "main--home-intro-settled");
+  }
+
   function stopIntro() {
     if (introEndTimer) {
       window.clearTimeout(introEndTimer);
       introEndTimer = null;
     }
     clearIntroStyles();
+    endHomeChatIntro();
     isPlaying = false;
     if (replayBtn) replayBtn.disabled = prefersReducedMotion;
   }
@@ -77,6 +95,7 @@
   function playIntro() {
     if (!cards.length || prefersReducedMotion) {
       finishPending();
+      endHomeChatIntro();
       return;
     }
 
@@ -96,6 +115,7 @@
     finishPending();
     void orbit.offsetWidth;
     orbit.classList.add("cards-orbit--intro");
+    startHomeChatIntro();
 
     if (window.RippleBackground?.reveal) {
       window.RippleBackground.reveal();
@@ -109,15 +129,23 @@
     }, totalMs);
   }
 
-  window.CardsIntro = { play: playIntro };
+  function replayHomeIntro() {
+    window.CategoryPanel?.deselect?.();
+    window.Chat?.resetToHome?.();
+    orbit.classList.add("cards-orbit--intro-pending");
+    playIntro();
+  }
+
+  window.CardsIntro = { play: playIntro, replayHome: replayHomeIntro };
 
   if (replayBtn) {
     replayBtn.disabled = prefersReducedMotion;
-    replayBtn.addEventListener("click", playIntro);
+    replayBtn.addEventListener("click", replayHomeIntro);
   }
 
   if (!cards.length || prefersReducedMotion) {
     finishPending();
+    endHomeChatIntro();
     return;
   }
 

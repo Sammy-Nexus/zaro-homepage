@@ -17,6 +17,10 @@
   --lilac-100: #efeef9;
   --lilac-300: #cbc8ea;
   --lilac-500: #9284ce;
+  --lilac-tab-active: #bdb4f8;
+  --lilac-900: #45248e;
+  --agent-success: #3a9e48;
+  --agent-app-purple: #7b6fbf;
   --orange-100: #ffead4;
   --orange-300: #ffb070;
   --orange-500: #ff6a1a;
@@ -38,6 +42,8 @@
   --pattern-dim-blur: 8px;
   --pattern-dim-opacity: 1;
   --pattern-dim-duration: 0.75s;
+  --intro-spiral-duration: 0.5s;
+  --intro-spiral-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --panel-morph-open-duration: 0.52s;
   --panel-morph-close-duration: 0.37s;
   /* Figma 6280:32839 — blur layers at 5%; edge layer helps on cloud-50 */

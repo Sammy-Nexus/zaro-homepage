@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaro — Scaling Europe</title>
+    <link rel="stylesheet" href="styles/main.css?v=155" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="sidebar__panel">
+          <header class="sidebar__header">
+            <div class="sidebar__logo">
+              <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
+            </div>
+            <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
+              <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
+            </button>
+          </header>
+
+          <div class="sidebar__workspace">
+            <button class="workspace-selector" type="button">
+              <span class="workspace-selector__icon">S</span>
+              <span class="workspace-selector__label">Scaling Europe</span>
+              <span class="workspace-selector__chevron-wrap" aria-hidden="true">
+                <img src="assets/sidebar/icon-chevron.svg" width="16" height="16" alt="" />
+              </span>
+            </button>
+          </div>
+
+          <div class="sidebar__scroll">
+            <div class="sidebar__nav-group">
+              <nav class="nav-block nav-block--primary" aria-label="Primary">
+                <a class="nav-row" href="index.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
+                  Home
+                </a>
+                <button class="nav-row nav-row--search" type="button">
+                  <span class="nav-row__start">
+                    <img class="nav-row__icon" src="assets/sidebar/icon-search.svg" width="14" height="14" alt="" />
+                    Search
+                  </span>
+                  <span class="nav-row__keys">
+                    <kbd class="kbd kbd--cmd">⌘</kbd>
+                    <kbd class="kbd kbd--key">K</kbd>
+                  </span>
+                </button>
+              </nav>
+
+              <nav class="nav-block nav-block--workspace" aria-label="Workspace">
+                <div class="nav-block__heading">Workspace</div>
+                <a class="nav-row" href="apps.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-apps.svg" width="14" height="14" alt="" />
+                  Apps
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-store.svg" width="14" height="14" alt="" />
+                  App Store
+                </a>
+                <a class="nav-row nav-row--active" href="agents.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-agents.svg" width="14" height="14" alt="" />
+                  Zaro Agents
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-robot.svg" width="14" height="14" alt="" />
+                  Connected Agents
+                </a>
+                <a class="nav-row" href="files.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-files.svg" width="14" height="14" alt="" />
+                  Files
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-dashboard.svg" width="14" height="14" alt="" />
+                  Dashboard
+                </a>
+              </nav>
+
+              <nav class="nav-block nav-block--control" aria-label="Control Panel">
+                <div class="nav-block__heading">Control Panel</div>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-skills.svg" width="14" height="14" alt="" />
+                  Skills
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-memory.svg" width="14" height="14" alt="" />
+                  Memory
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg?v=3" width="14" height="14" alt="" />
+                  Usage
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-connections.svg" width="14" height="14" alt="" />
+                  Connections
+                </a>
+              </nav>
+            </div>
+          </div>
+
+          <footer class="sidebar__footer">
+            <button
+              class="nav-row nav-row--help"
+              id="demo-modal-trigger"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="demo-modal"
+              aria-expanded="false"
+            >
+              <img class="nav-row__icon" src="assets/sidebar/icon-help.svg" width="16" height="16" alt="" />
+              Help
+            </button>
+            <button class="user-menu" type="button">
+              <span class="user-menu__avatar">
+                <span class="user-menu__avatar-inner">S</span>
+              </span>
+              <span class="user-menu__email">Seb Johnson</span>
+            </button>
+          </footer>
+        </div>
+      </aside>
+
+      <main class="main agents-page agents-page--intro-pending">
+        <header class="agents-page__topbar">
+          <nav class="agents-breadcrumb" aria-label="Breadcrumb">
+            <a class="agents-breadcrumb__home" href="index.html" aria-label="Home">
+              <img src="assets/agents/icon-breadcrumb-home.svg" width="14" height="14" alt="" />
+            </a>
+            <span class="agents-breadcrumb__sep" aria-hidden="true">
+              <img src="assets/agents/icon-breadcrumb-chevron.svg" width="14" height="14" alt="" />
+            </span>
+            <span class="agents-breadcrumb__current">Zaro Agents</span>
+          </nav>
+          <div class="agents-topbar__actions">
+            <button class="agents-icon-btn" type="button" aria-label="Show activity">
+              <img src="assets/agents/icon-activity.svg" width="16" height="16" alt="" />
+            </button>
+            <button class="agents-icon-btn" type="button" aria-label="Show files">
+              <img src="assets/agents/icon-files-panel.svg" width="16" height="16" alt="" />
+            </button>
+          </div>
+        </header>
+
+        <div class="agents-page__body">
+          <div class="agents-page__header">
+            <div class="agents-page__title-block">
+              <div class="agents-page__icon" aria-hidden="true">
+                <img src="assets/agents/icon-page.svg" width="28" height="28" alt="" />
+              </div>
+              <h1 class="agents-page__title">Zaro Agents</h1>
+            </div>
+            <div class="agents-page__actions">
+              <label class="agents-search">
+                <img src="assets/agents/icon-search.svg" width="14" height="14" alt="" />
+                <input
+                  class="agents-search__input"
+                  id="agents-search"
+                  type="search"
+                  placeholder="Search Agents..."
+                  autocomplete="off"
+                />
+              </label>
+              <button class="agents-btn agents-btn--secondary" id="agents-refresh-btn" type="button">
+                <img src="assets/agents/icon-refresh.svg" width="16" height="16" alt="" />
+                Refresh
+              </button>
+              <button class="agents-btn agents-btn--primary" id="agents-new-btn" type="button">
+                <img src="assets/agents/icon-plus.svg" width="16" height="16" alt="" />
+                New Agent
+              </button>
+            </div>
+          </div>
+
+          <div class="agents-toolbar">
+            <div class="agents-status-tabs" role="tablist" aria-label="Filter by status">
+              <button class="agents-status-tab agents-status-tab--active" type="button" role="tab" data-status="all" aria-selected="true">All</button>
+              <button class="agents-status-tab" type="button" role="tab" data-status="pending">Pending</button>
+              <button class="agents-status-tab" type="button" role="tab" data-status="running">Running</button>
+              <button class="agents-status-tab" type="button" role="tab" data-status="paused">Paused</button>
+              <button class="agents-status-tab" type="button" role="tab" data-status="failed">Failed</button>
+            </div>
+
+            <div class="agents-dropdown" id="agents-member-dropdown">
+              <button class="agents-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <span class="agents-dropdown__label">All members</span>
+                <img src="assets/agents/icon-chevron.svg" width="12" height="12" alt="" />
+              </button>
+              <div class="agents-dropdown__menu" role="listbox">
+                <button class="agents-dropdown__option agents-dropdown__option--selected" type="button" data-value="all" data-label="All members">All members</button>
+                <button class="agents-dropdown__option" type="button" data-value="seb" data-label="Seb Johnson">Seb Johnson</button>
+                <button class="agents-dropdown__option" type="button" data-value="team" data-label="Team Zaro">Team Zaro</button>
+              </div>
+            </div>
+
+            <div class="agents-toolbar__spacer"></div>
+
+            <div class="agents-toolbar__meta" id="agents-jobs-count">3 jobs</div>
+
+            <div class="agents-dropdown" id="agents-columns-dropdown">
+              <button class="agents-dropdown__trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                <img src="assets/agents/icon-columns.svg" width="12" height="12" alt="" />
+                <span class="agents-dropdown__label">Columns</span>
+              </button>
+              <div class="agents-dropdown__menu" role="listbox">
+                <button class="agents-dropdown__option agents-dropdown__option--check agents-dropdown__option--checked" type="button" data-column="type">
+                  Type <span class="agents-dropdown__check" aria-hidden="true"></span>
+                </button>
+                <button class="agents-dropdown__option agents-dropdown__option--check agents-dropdown__option--checked" type="button" data-column="schedule">
+                  Schedule <span class="agents-dropdown__check" aria-hidden="true"></span>
+                </button>
+                <button class="agents-dropdown__option agents-dropdown__option--check agents-dropdown__option--checked" type="button" data-column="runs">
+                  Runs <span class="agents-dropdown__check" aria-hidden="true"></span>
+                </button>
+                <button class="agents-dropdown__option agents-dropdown__option--check agents-dropdown__option--checked" type="button" data-column="last-run">
+                  Last Run <span class="agents-dropdown__check" aria-hidden="true"></span>
+                </button>
+                <button class="agents-dropdown__option agents-dropdown__option--check agents-dropdown__option--checked" type="button" data-column="apps">
+                  Apps <span class="agents-dropdown__check" aria-hidden="true"></span>
+                </button>
+              </div>
+            </div>
+
+            <div class="agents-view-toggle" aria-label="View mode">
+              <button class="agents-view-toggle__btn" type="button" data-view="cards" aria-label="Card view">
+                <img src="assets/agents/icon-cards-view.svg" width="14" height="14" alt="" />
+              </button>
+              <button class="agents-view-toggle__btn agents-view-toggle__btn--active" type="button" data-view="table" aria-label="Table view">
+                <img src="assets/agents/icon-table-view.svg" width="14" height="14" alt="" />
+              </button>
+            </div>
+          </div>
+
+          <div class="agents-table-wrap" id="agents-table-wrap">
+            <div class="agents-table__head">
+              <div class="agents-table__head-cell">Name</div>
+              <div class="agents-table__head-cell" data-col="type">Type</div>
+              <div class="agents-table__head-cell">Status</div>
+              <div class="agents-table__head-cell" data-col="schedule">Schedule</div>
+              <div class="agents-table__head-cell" data-col="runs">Runs</div>
+              <div class="agents-table__head-cell" data-col="last-run">Last Run</div>
+              <div class="agents-table__head-cell" data-col="apps">Apps</div>
+              <div class="agents-table__head-cell agents-table__head-cell--menu" data-col="menu" aria-hidden="true"></div>
+            </div>
+
+            <div class="agents-table__body">
+              <section class="agents-group" data-group="scaling-studio">
+                <button class="agents-group__header" type="button" aria-expanded="true">
+                  <div class="agents-group__header-main">
+                    <span class="agents-group__icon">
+                      <img src="assets/agents/icon-workflow.svg" width="16" height="16" alt="" />
+                    </span>
+                    <span class="agents-group__title">Scaling Studio Workflow</span>
+                    <div class="agents-group__stats">
+                      <span class="agents-group__stat">
+                        <img src="assets/agents/icon-agents-count.svg" width="14" height="14" alt="" />
+                        3 agents
+                      </span>
+                      <span class="agents-group__stat">
+                        <img src="assets/agents/icon-app-count.svg" width="14" height="14" alt="" />
+                        1 app
+                      </span>
+                    </div>
+                  </div>
+                  <img class="agents-group__chevron" src="assets/agents/icon-chevron.svg" width="16" height="16" alt="" />
+                </button>
+
+                <div class="agents-group__rows">
+                  <article class="agents-row" data-agent-id="editor" data-status="paused">
+                    <div class="agents-row__cell agents-row__cell--name">
+                      <div class="agents-row__name-wrap">
+                        <div class="agents-row__info">
+                          <h3 class="agents-row__title">The Editor (Performance)</h3>
+                          <p class="agents-row__desc">Analyzes Seb's LinkedIn post performance. Scrapes engagement data, scores posts vs baseline, generates insights, and feeds tone recommendations back into the composer. Runs on-demand after publish and weekly for macro analysis.</p>
+                          <div class="agents-row__progress">
+                            <div class="agents-row__progress-bar"><div class="agents-row__progress-fill" style="width: 100%"></div></div>
+                            <span class="agents-row__progress-pct">100%</span>
+                            <span class="agents-row__progress-msg">Weekly sweep #1 blocked by LinkedIn authentication…</span>
+                          </div>
+                        </div>
+                        <div class="agents-row__actions">
+                          <button class="agents-icon-btn" type="button" data-action="refresh" aria-label="Refresh agent">
+                            <img src="assets/agents/icon-row-refresh.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="run" aria-label="Run agent">
+                            <img src="assets/agents/icon-row-play.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="open" aria-label="Open agent">
+                            <img src="assets/agents/icon-row-external.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="agents-row__cell" data-col="type"><span class="agents-type-pill"><span class="agents-type-pill__dot"></span>Hybrid</span></div>
+                    <div class="agents-row__cell agents-row__status"><img src="assets/agents/icon-pause.svg?v=3" width="14" height="14" alt="Paused" /></div>
+                    <div class="agents-row__cell" data-col="schedule"><span class="agents-row__text">Sun at 22:00</span></div>
+                    <div class="agents-row__cell" data-col="runs"><span class="agents-row__text agents-row__text--dark">1</span></div>
+                    <div class="agents-row__cell" data-col="last-run"><span class="agents-row__last-run"><img src="assets/agents/icon-check.svg" width="14" height="14" alt="" />OK</span></div>
+                    <div class="agents-row__cell" data-col="apps">
+                      <button type="button" class="agents-app-pill agents-app-pill--operations" data-app-preview="scaling-studio">
+                        <img src="assets/agents/icon-briefcase-pill.svg?v=2" width="10" height="10" alt="" />
+                        Scaling Studio
+                      </button>
+                    </div>
+                    <div class="agents-row__cell agents-row__cell--menu" data-col="menu">
+                      <div class="agents-row-menu">
+                        <button class="agents-icon-btn agents-row-menu__trigger" type="button" aria-label="Agent options" aria-haspopup="menu" aria-expanded="false">
+                          <img src="assets/agents/icon-ellipsis.svg?v=1" width="16" height="16" alt="" />
+                        </button>
+                        <div class="agents-row-menu__popover" role="menu" hidden>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="open-dashboard">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-dashboard.svg?v=1" width="14" height="14" alt="" />
+                            <span>Open in dashboard</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="usage">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-usage.svg?v=4" width="14" height="14" alt="" />
+                            <span>Usage</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="optimise">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-optimise.svg?v=1" width="14" height="14" alt="" />
+                            <span>Optimise</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="settings">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-settings.svg?v=1" width="14" height="14" alt="" />
+                            <span>Settings</span>
+                          </button>
+                          <div class="agents-row-menu__divider" role="separator"></div>
+                          <button class="agents-row-menu__item agents-row-menu__item--danger" type="button" role="menuitem" data-menu-action="delete">
+                            <img class="agents-row-menu__icon agents-row-menu__icon--danger" src="assets/agents/icon-menu-delete.svg?v=1" width="14" height="14" alt="" />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="agents-row" data-agent-id="github" data-status="paused">
+                    <div class="agents-row__cell agents-row__cell--name">
+                      <div class="agents-row__name-wrap">
+                        <div class="agents-row__info">
+                          <h3 class="agents-row__title">GitHub Activity Monitor</h3>
+                          <p class="agents-row__desc">Posts drafted content to LinkedIn via browser automation when triggered. Opens a browser, navigates to LinkedIn, logs in with stored session, composes and publishes the post, captures the post URL, and updates the library.</p>
+                        </div>
+                        <div class="agents-row__actions">
+                          <button class="agents-icon-btn" type="button" data-action="refresh" aria-label="Refresh agent">
+                            <img src="assets/agents/icon-row-refresh.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="run" aria-label="Run agent">
+                            <img src="assets/agents/icon-row-play.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="open" aria-label="Open agent">
+                            <img src="assets/agents/icon-row-external.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="agents-row__cell" data-col="type"><span class="agents-type-pill"><span class="agents-type-pill__dot"></span>File-watch</span></div>
+                    <div class="agents-row__cell agents-row__status"><img src="assets/agents/icon-pause.svg?v=3" width="14" height="14" alt="Paused" /></div>
+                    <div class="agents-row__cell" data-col="schedule"><span class="agents-row__text">—</span></div>
+                    <div class="agents-row__cell" data-col="runs"><span class="agents-row__text agents-row__text--dark">0</span></div>
+                    <div class="agents-row__cell" data-col="last-run"><span class="agents-row__text">—</span></div>
+                    <div class="agents-row__cell" data-col="apps">
+                      <button type="button" class="agents-app-pill agents-app-pill--operations" data-app-preview="scaling-studio">
+                        <img src="assets/agents/icon-briefcase-pill.svg?v=2" width="10" height="10" alt="" />
+                        Scaling Studio
+                      </button>
+                    </div>
+                    <div class="agents-row__cell agents-row__cell--menu" data-col="menu">
+                      <div class="agents-row-menu">
+                        <button class="agents-icon-btn agents-row-menu__trigger" type="button" aria-label="Agent options" aria-haspopup="menu" aria-expanded="false">
+                          <img src="assets/agents/icon-ellipsis.svg?v=1" width="16" height="16" alt="" />
+                        </button>
+                        <div class="agents-row-menu__popover" role="menu" hidden>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="open-dashboard">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-dashboard.svg?v=1" width="14" height="14" alt="" />
+                            <span>Open in dashboard</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="usage">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-usage.svg?v=4" width="14" height="14" alt="" />
+                            <span>Usage</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="optimise">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-optimise.svg?v=1" width="14" height="14" alt="" />
+                            <span>Optimise</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="settings">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-settings.svg?v=1" width="14" height="14" alt="" />
+                            <span>Settings</span>
+                          </button>
+                          <div class="agents-row-menu__divider" role="separator"></div>
+                          <button class="agents-row-menu__item agents-row-menu__item--danger" type="button" role="menuitem" data-menu-action="delete">
+                            <img class="agents-row-menu__icon agents-row-menu__icon--danger" src="assets/agents/icon-menu-delete.svg?v=1" width="14" height="14" alt="" />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+
+                  <article class="agents-row" data-agent-id="wire" data-status="paused">
+                    <div class="agents-row__cell agents-row__cell--name">
+                      <div class="agents-row__name-wrap">
+                        <div class="agents-row__info">
+                          <h3 class="agents-row__title">The Wire (Ingestion)</h3>
+                          <p class="agents-row__desc">Pulls breaking tech/VC/policy news from RSS feeds, Substack, and X/Twitter accounts. Deduplicates, auto-tags (region, topic, breaking score), and writes stories into /scaling-studio/feed/ as JSON files for the Scaling Studio app to display.</p>
+                          <div class="agents-row__progress">
+                            <div class="agents-row__progress-bar"><div class="agents-row__progress-fill" style="width: 100%"></div></div>
+                            <span class="agents-row__progress-pct">100%</span>
+                            <span class="agents-row__progress-msg">Fetched all 6 live RSS feeds (Sifted, Tech.eu, The…</span>
+                          </div>
+                        </div>
+                        <div class="agents-row__actions">
+                          <button class="agents-icon-btn" type="button" data-action="refresh" aria-label="Refresh agent">
+                            <img src="assets/agents/icon-row-refresh.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="run" aria-label="Run agent">
+                            <img src="assets/agents/icon-row-play.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                          <button class="agents-icon-btn" type="button" data-action="open" aria-label="Open agent">
+                            <img src="assets/agents/icon-row-external.svg?v=1" width="16" height="16" alt="" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="agents-row__cell" data-col="type"><span class="agents-type-pill"><span class="agents-type-pill__dot"></span>Recurring</span></div>
+                    <div class="agents-row__cell agents-row__status"><img src="assets/agents/icon-pause.svg?v=3" width="14" height="14" alt="Paused" /></div>
+                    <div class="agents-row__cell" data-col="schedule"><span class="agents-row__text">Every 15 minutes</span></div>
+                    <div class="agents-row__cell" data-col="runs"><span class="agents-row__text agents-row__text--dark">93</span></div>
+                    <div class="agents-row__cell" data-col="last-run"><span class="agents-row__last-run"><img src="assets/agents/icon-check.svg" width="14" height="14" alt="" />OK</span></div>
+                    <div class="agents-row__cell" data-col="apps">
+                      <button type="button" class="agents-app-pill agents-app-pill--operations" data-app-preview="scaling-studio">
+                        <img src="assets/agents/icon-briefcase-pill.svg?v=2" width="10" height="10" alt="" />
+                        Scaling Studio
+                      </button>
+                    </div>
+                    <div class="agents-row__cell agents-row__cell--menu" data-col="menu">
+                      <div class="agents-row-menu">
+                        <button class="agents-icon-btn agents-row-menu__trigger" type="button" aria-label="Agent options" aria-haspopup="menu" aria-expanded="false">
+                          <img src="assets/agents/icon-ellipsis.svg?v=1" width="16" height="16" alt="" />
+                        </button>
+                        <div class="agents-row-menu__popover" role="menu" hidden>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="open-dashboard">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-dashboard.svg?v=1" width="14" height="14" alt="" />
+                            <span>Open in dashboard</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="usage">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-usage.svg?v=4" width="14" height="14" alt="" />
+                            <span>Usage</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="optimise">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-optimise.svg?v=1" width="14" height="14" alt="" />
+                            <span>Optimise</span>
+                          </button>
+                          <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="settings">
+                            <img class="agents-row-menu__icon" src="assets/agents/icon-menu-settings.svg?v=1" width="14" height="14" alt="" />
+                            <span>Settings</span>
+                          </button>
+                          <div class="agents-row-menu__divider" role="separator"></div>
+                          <button class="agents-row-menu__item agents-row-menu__item--danger" type="button" role="menuitem" data-menu-action="delete">
+                            <img class="agents-row-menu__icon agents-row-menu__icon--danger" src="assets/agents/icon-menu-delete.svg?v=1" width="14" height="14" alt="" />
+                            <span>Delete</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </section>
+
+              <article class="agents-row agents-row--standalone" data-agent-id="composer" data-status="paused">
+                <div class="agents-row__cell agents-row__cell--name">
+                  <div class="agents-row__name-wrap">
+                    <div class="agents-row__info">
+                      <h3 class="agents-row__title">The Composer</h3>
+                      <p class="agents-row__desc">Drafts LinkedIn posts in Seb's voice using the tone library and recent performance insights from The Editor.</p>
+                    </div>
+                    <div class="agents-row__actions">
+                      <button class="agents-icon-btn" type="button" data-action="refresh" aria-label="Refresh agent">
+                        <img src="assets/agents/icon-row-refresh.svg?v=1" width="16" height="16" alt="" />
+                      </button>
+                      <button class="agents-icon-btn" type="button" data-action="run" aria-label="Run agent">
+                        <img src="assets/agents/icon-row-play.svg?v=1" width="16" height="16" alt="" />
+                      </button>
+                      <button class="agents-icon-btn" type="button" data-action="open" aria-label="Open agent">
+                        <img src="assets/agents/icon-row-external.svg?v=1" width="16" height="16" alt="" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="agents-row__cell" data-col="type"><span class="agents-type-pill"><span class="agents-type-pill__dot"></span>On-demand</span></div>
+                <div class="agents-row__cell agents-row__status"><img src="assets/agents/icon-pause.svg?v=3" width="14" height="14" alt="Paused" /></div>
+                <div class="agents-row__cell" data-col="schedule"><span class="agents-row__text">—</span></div>
+                <div class="agents-row__cell" data-col="runs"><span class="agents-row__text agents-row__text--dark">12</span></div>
+                <div class="agents-row__cell" data-col="last-run"><span class="agents-row__last-run"><img src="assets/agents/icon-check.svg" width="14" height="14" alt="" />OK</span></div>
+                <div class="agents-row__cell" data-col="apps">
+                  <button type="button" class="agents-app-pill agents-app-pill--operations" data-app-preview="scaling-studio">
+                    <img src="assets/agents/icon-briefcase-pill.svg?v=2" width="10" height="10" alt="" />
+                    Scaling Studio
+                  </button>
+                </div>
+                <div class="agents-row__cell agents-row__cell--menu" data-col="menu">
+                  <div class="agents-row-menu">
+                    <button class="agents-icon-btn agents-row-menu__trigger" type="button" aria-label="Agent options" aria-haspopup="menu" aria-expanded="false">
+                      <img src="assets/agents/icon-ellipsis.svg?v=1" width="16" height="16" alt="" />
+                    </button>
+                    <div class="agents-row-menu__popover" role="menu" hidden>
+                      <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="open-dashboard">
+                        <img class="agents-row-menu__icon" src="assets/agents/icon-menu-dashboard.svg?v=1" width="14" height="14" alt="" />
+                        <span>Open in dashboard</span>
+                      </button>
+                      <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="usage">
+                        <img class="agents-row-menu__icon" src="assets/agents/icon-menu-usage.svg?v=4" width="14" height="14" alt="" />
+                        <span>Usage</span>
+                      </button>
+                      <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="optimise">
+                        <img class="agents-row-menu__icon" src="assets/agents/icon-menu-optimise.svg?v=1" width="14" height="14" alt="" />
+                        <span>Optimise</span>
+                      </button>
+                      <button class="agents-row-menu__item" type="button" role="menuitem" data-menu-action="settings">
+                        <img class="agents-row-menu__icon" src="assets/agents/icon-menu-settings.svg?v=1" width="14" height="14" alt="" />
+                        <span>Settings</span>
+                      </button>
+                      <div class="agents-row-menu__divider" role="separator"></div>
+                      <button class="agents-row-menu__item agents-row-menu__item--danger" type="button" role="menuitem" data-menu-action="delete">
+                        <img class="agents-row-menu__icon agents-row-menu__icon--danger" src="assets/agents/icon-menu-delete.svg?v=1" width="14" height="14" alt="" />
+                        <span>Delete</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="agents-cards" id="agents-cards" aria-live="polite"></div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <a
+      class="agents-app-preview agents-app-preview--operations"
+      id="agents-app-preview"
+      href="scaling-studio.html"
+      hidden
+      tabindex="-1"
+      aria-label="Open Scaling Studio"
+    >
+      <div class="agents-app-preview__thumb">
+        <div class="agents-app-preview__pattern" aria-hidden="true"></div>
+        <div class="agents-app-preview__shot">
+          <img
+            class="agents-app-preview__image"
+            src="assets/category-panel/scaling-studio-thumb.png"
+            width="280"
+            height="176"
+            alt=""
+          />
+        </div>
+      </div>
+      <div class="agents-app-preview__body">
+        <div class="agents-app-preview__copy">
+          <h3 class="agents-app-preview__title">Scaling Studio</h3>
+          <p class="agents-app-preview__desc">Content engine for Scaling Europe — news ingestion, LinkedIn publishing, and performance analytics.</p>
+        </div>
+        <div class="agents-app-preview__footer">
+          <div class="agents-app-preview__stats">
+            <span class="agents-app-preview__stat">Today</span>
+            <span class="agents-app-preview__stat">
+              <img src="assets/category-panel/icon-folder-small.svg" width="11" height="11" alt="" />
+              <span class="agents-app-preview__folders">32</span>
+            </span>
+            <span class="agents-app-preview__stat">
+              <img src="assets/category-panel/icon-gear-small.svg" width="11" height="11" alt="" />
+              <span class="agents-app-preview__settings">3</span>
+            </span>
+          </div>
+          <span class="agents-app-preview__team">Team Zaro</span>
+        </div>
+      </div>
+    </a>
+
+    <div class="agent-panel-wrap" id="agent-panel-wrap" aria-hidden="true">
+      <aside
+        class="agent-panel"
+        id="agent-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="agent-panel-title"
+      >
+        <header class="agent-panel__header">
+          <div class="agent-panel__status" id="agent-panel-status" aria-hidden="true"></div>
+          <h2 class="agent-panel__title" id="agent-panel-title"></h2>
+          <div class="agent-panel__header-actions">
+            <button class="agents-icon-btn" type="button" id="agent-panel-maximize" aria-label="Expand agent">
+              <img src="assets/agents/icon-panel-maximize.svg" width="14" height="14" alt="" />
+            </button>
+            <button class="agents-icon-btn" type="button" id="agent-panel-close" aria-label="Close agent panel">
+              <img src="assets/agents/icon-panel-close.svg" width="14" height="14" alt="" />
+            </button>
+          </div>
+        </header>
+
+        <div class="agent-panel__tabs" role="tablist" aria-label="Agent sections">
+          <button class="agent-panel__tab agent-panel__tab--active" type="button" role="tab" aria-selected="true" data-tab="overview">
+            <img src="assets/agents/icon-panel-file.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="runs">
+            <img src="assets/agents/icon-panel-zap.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="messages">
+            <img src="assets/agents/icon-panel-messages.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="watch">
+            <img src="assets/agents/icon-panel-eye.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="dashboard">
+            <img src="assets/agents/icon-panel-dashboard.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="secrets">
+            <img src="assets/agents/icon-panel-key.svg" width="14" height="14" alt="" />
+          </button>
+          <button class="agent-panel__tab" type="button" role="tab" aria-selected="false" data-tab="edit">
+            <img src="assets/agents/icon-panel-pencil.svg" width="14" height="14" alt="" />
+          </button>
+        </div>
+
+        <div class="agent-panel__scroll">
+          <div class="agent-panel__content">
+            <section class="agent-panel__section">
+              <h3 class="agent-panel__label">Description</h3>
+              <p class="agent-panel__desc" id="agent-panel-desc"></p>
+            </section>
+
+            <section class="agent-panel__section" id="agent-panel-schedule-section">
+              <h3 class="agent-panel__label">Schedule</h3>
+              <div class="agent-panel__schedule-row">
+                <img src="assets/agents/icon-panel-calendar.svg" width="13" height="13" alt="" />
+                <span id="agent-panel-schedule"></span>
+                <span class="agent-panel__timezone" id="agent-panel-timezone"></span>
+              </div>
+              <div class="agent-panel__schedule-row">
+                <img src="assets/agents/icon-panel-rotate.svg" width="13" height="13" alt="" />
+                <span id="agent-panel-runs"></span>
+              </div>
+            </section>
+
+            <section class="agent-panel__section" id="agent-panel-watch-section" hidden>
+              <h3 class="agent-panel__label">Watch Paths</h3>
+              <div class="agent-panel__card agent-panel__watch-card" id="agent-panel-watch-list"></div>
+            </section>
+
+            <section class="agent-panel__section" id="agent-panel-apps-section" hidden>
+              <h3 class="agent-panel__label">Connected Apps</h3>
+              <a class="agent-panel__app-card" id="agent-panel-app-link" href="scaling-studio.html">
+                <span class="agent-panel__app-icon">
+                  <img src="assets/agents/icon-briefcase-pill.svg?v=2" width="16" height="16" alt="" />
+                </span>
+                <span class="agent-panel__app-copy">
+                  <span class="agent-panel__app-name" id="agent-panel-app-name"></span>
+                  <span class="agent-panel__app-meta" id="agent-panel-app-meta"></span>
+                </span>
+                <img class="agent-panel__app-chevron" src="assets/agents/icon-panel-chevron.svg" width="14" height="14" alt="" />
+              </a>
+            </section>
+
+            <section class="agent-panel__section" id="agent-panel-thinking-section" hidden>
+              <h3 class="agent-panel__label">Thinking</h3>
+              <span class="agent-panel__thinking-pill">
+                <img src="assets/agents/icon-panel-brain.svg" width="14" height="14" alt="" />
+                Thinking
+              </span>
+            </section>
+
+            <footer class="agent-panel__meta">
+              <p id="agent-panel-created"></p>
+              <p class="agent-panel__uuid" id="agent-panel-uuid"></p>
+            </footer>
+
+            <div class="agent-panel__prompt-card" id="agent-panel-prompt-section" hidden>
+              <div class="agent-panel__prompt-top">
+                <button class="agent-panel__prompt-toggle" type="button" id="agent-panel-prompt-toggle" aria-expanded="false">
+                  <img src="assets/agents/icon-panel-chevron.svg" width="13" height="13" alt="" />
+                  Prompt
+                </button>
+                <button class="agent-panel__prompt-copy" type="button" id="agent-panel-prompt-copy">
+                  <img src="assets/agents/icon-panel-copy.svg" width="12" height="12" alt="" />
+                  Copy
+                </button>
+              </div>
+              <div class="agent-panel__prompt-body" id="agent-panel-prompt-body" hidden></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="agents-toast" id="agents-toast" role="status" aria-live="polite"></div>
+
+    <div class="demo-modal" id="demo-modal" hidden>
+      <button class="demo-modal__backdrop" type="button" aria-label="Close demo controls" tabindex="-1"></button>
+      <div
+        class="demo-modal__panel demo-menu"
+        id="demo-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-modal-title"
+      >
+        <p class="demo-menu__title" id="demo-modal-title">Demo</p>
+        <div class="demo-menu__items">
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="empty-states-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Empty states</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="scaling-europe-demo" checked />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Scaling Europe demo</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-agent-table-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alt agent table design</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-builder-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alternative builder</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="auto-type-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Auto type</span>
+          </label>
+          <label class="demo-menu__field">
+            <span class="demo-menu__field-label">Auto type script</span>
+            <textarea
+              class="demo-menu__textarea"
+              id="auto-type-text"
+              rows="3"
+              placeholder="Paste demo message…"
+              spellcheck="false"
+            >Build me a social media content engine: agents to pull tech news, post to LinkedIn, and analyze performance — plus an app to manage it all.</textarea>
+          </label>
+          <button class="demo-menu__btn" type="button" id="replay-intro-demo">
+            Replay card intro
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/scaling-demo.js?v=1"></script>
+    <script src="scripts/demo-modal.js?v=3"></script>
+    <script src="scripts/agents-intro.js?v=1"></script>
+    <script src="scripts/agents-alt-table.js?v=4"></script>
+    <script src="scripts/page-nav.js?v=2"></script>
+    <script src="scripts/agents.js?v=11"></script>
+  </body>
+</html>

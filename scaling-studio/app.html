@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scaling Studio — News Feed</title>
+    <link rel="stylesheet" href="fonts.css?v=1" />
+    <link rel="stylesheet" href="app.css?v=8" />
+  </head>
+  <body>
+    <div class="ss-app">
+      <aside class="ss-sidebar" aria-label="Scaling Studio navigation">
+        <div class="ss-sidebar__logo">
+          <img src="../assets/scaling-studio/se-logo.png" width="36" height="36" alt="Scaling Europe" />
+        </div>
+        <nav class="ss-sidebar__nav">
+          <button class="ss-sidebar__btn ss-sidebar__btn--active" type="button" data-view="feed" aria-label="News Feed">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M4 5h12M4 10h12M4 15h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="ss-sidebar__btn" type="button" data-view="compose" aria-label="Compose">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10.833 17.5H17.5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17.645 5.676a1.667 1.667 0 0 0-2.357-2.357L3.202 13.478a1.667 1.667 0 0 0-.417.692l-1.1 3.627a.417.417 0 0 0 .532.532l3.627-1.1a1.667 1.667 0 0 0 .692-.417L17.645 5.676z" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="ss-sidebar__btn" type="button" data-view="settings" aria-label="Settings">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="10" cy="10" r="2.5" stroke="currentColor" stroke-width="1.67"/>
+              <path d="M10 3.5v1.67M10 14.83V16.5M16.5 10h-1.67M4.17 10H2.5M14.43 5.57l-1.18 1.18M6.75 13.25l-1.18 1.18M14.43 14.43l-1.18-1.18M6.75 6.75 5.57 5.57" stroke="currentColor" stroke-width="1.67" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="ss-sidebar__btn" type="button" data-view="library" aria-label="Library">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 5.833V17.5M2.5 15V3.333A.833.833 0 0 1 3.333 2.5H6.667A3.333 3.333 0 0 1 10 5.833a3.333 3.333 0 0 1 3.333-3.333h3.334a.833.833 0 0 1 .833.833V14.167a.833.833 0 0 1-.833.833H12.5a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0-2.5-2.5H3.333A.833.833 0 0 1 2.5 15z" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="ss-sidebar__btn" type="button" data-view="analytics" aria-label="Analytics">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M18.334 10H16.267a1.667 1.667 0 0 1-1.608-1.217L12.7 1.817a.417.417 0 0 0-.8 0L7.3 18.184a.417.417 0 0 1-.4.3H1.667" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </nav>
+        <div class="ss-sidebar__spacer"></div>
+        <button class="ss-sidebar__btn ss-sidebar__btn--theme" type="button" aria-label="Theme">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </aside>
+
+      <main class="ss-main">
+        <div class="ss-view ss-view--active" data-view="feed">
+          <div class="ss-main__inner">
+            <header class="ss-header">
+              <div>
+                <h1 class="ss-header__title">News Feed</h1>
+                <p class="ss-header__subtitle">Latest stories from your sources</p>
+              </div>
+              <div class="ss-status">
+                <svg viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                  <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M6 3v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+                Wire active · 18d ago
+              </div>
+            </header>
+
+            <div class="ss-filters" role="toolbar" aria-label="Filter stories">
+              <button class="ss-filter ss-filter--active" type="button" data-group="topic" data-value="all">All</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="europe">Europe</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="us">US</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="ai">AI</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="fintech">Fintech</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="vc">VC</button>
+              <button class="ss-filter" type="button" data-group="topic" data-value="policy">Policy</button>
+              <span class="ss-filter-divider" aria-hidden="true"></span>
+              <button class="ss-filter ss-filter--active" type="button" data-group="channel" data-value="all">All</button>
+              <button class="ss-filter" type="button" data-group="channel" data-value="news">News</button>
+              <button class="ss-filter" type="button" data-group="channel" data-value="x">X</button>
+              <button class="ss-filter" type="button" data-group="channel" data-value="substack">Substack</button>
+            </div>
+
+            <div class="ss-feed" id="ss-feed"></div>
+            <p class="ss-empty" id="ss-empty" hidden>No stories match these filters.</p>
+          </div>
+        </div>
+
+        <div class="ss-view" data-view="compose">
+          <div class="ss-placeholder">
+            <h2>Compose</h2>
+            <p>Draft LinkedIn posts from your tone library.</p>
+          </div>
+        </div>
+
+        <div class="ss-view" data-view="analytics">
+          <div class="ss-placeholder">
+            <h2>Analytics</h2>
+            <p>Performance insights from The Editor agent.</p>
+          </div>
+        </div>
+
+        <div class="ss-view" data-view="library">
+          <div class="ss-placeholder">
+            <h2>Library</h2>
+            <p>Saved stories and reference material.</p>
+          </div>
+        </div>
+
+        <div class="ss-view" data-view="settings">
+          <div class="ss-placeholder">
+            <h2>Settings</h2>
+            <p>Configure sources, tags, and publishing rules.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="app.js?v=1"></script>
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zaro — Scaling Europe</title>
+    <link rel="stylesheet" href="styles/main.css?v=114" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" aria-label="Main navigation">
+        <div class="sidebar__panel">
+          <header class="sidebar__header">
+            <div class="sidebar__logo">
+              <img src="assets/sidebar/logo.svg" width="32" height="32" alt="" />
+            </div>
+            <button class="sidebar__collapse" type="button" aria-label="Collapse sidebar">
+              <img src="assets/sidebar/icon-collapse.svg" width="16" height="16" alt="" />
+            </button>
+          </header>
+
+          <div class="sidebar__workspace">
+            <button class="workspace-selector" type="button">
+              <span class="workspace-selector__icon">S</span>
+              <span class="workspace-selector__label">Scaling Europe</span>
+              <span class="workspace-selector__chevron-wrap" aria-hidden="true">
+                <img src="assets/sidebar/icon-chevron.svg" width="16" height="16" alt="" />
+              </span>
+            </button>
+          </div>
+
+          <div class="sidebar__scroll">
+            <div class="sidebar__nav-group">
+              <nav class="nav-block nav-block--primary" aria-label="Primary">
+                <a class="nav-row" href="index.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-home.svg" width="14" height="14" alt="" />
+                  Home
+                </a>
+                <button class="nav-row nav-row--search" type="button">
+                  <span class="nav-row__start">
+                    <img class="nav-row__icon" src="assets/sidebar/icon-search.svg" width="14" height="14" alt="" />
+                    Search
+                  </span>
+                  <span class="nav-row__keys">
+                    <kbd class="kbd kbd--cmd">⌘</kbd>
+                    <kbd class="kbd kbd--key">K</kbd>
+                  </span>
+                </button>
+              </nav>
+
+              <nav class="nav-block nav-block--workspace" aria-label="Workspace">
+                <div class="nav-block__heading">Workspace</div>
+                <a class="nav-row" href="apps.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-apps.svg" width="14" height="14" alt="" />
+                  Apps
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-store.svg" width="14" height="14" alt="" />
+                  App Store
+                </a>
+                <a class="nav-row" href="agents.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-agents.svg" width="14" height="14" alt="" />
+                  Zaro Agents
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-robot.svg" width="14" height="14" alt="" />
+                  Connected Agents
+                </a>
+                <a class="nav-row nav-row--active" href="files.html">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-files.svg" width="14" height="14" alt="" />
+                  Files
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-dashboard.svg" width="14" height="14" alt="" />
+                  Dashboard
+                </a>
+              </nav>
+
+              <nav class="nav-block nav-block--control" aria-label="Control Panel">
+                <div class="nav-block__heading">Control Panel</div>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-skills.svg" width="14" height="14" alt="" />
+                  Skills
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-memory.svg" width="14" height="14" alt="" />
+                  Memory
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-cost.svg?v=3" width="14" height="14" alt="" />
+                  Usage
+                </a>
+                <a class="nav-row" href="#">
+                  <img class="nav-row__icon" src="assets/sidebar/icon-connections.svg" width="14" height="14" alt="" />
+                  Connections
+                </a>
+              </nav>
+            </div>
+          </div>
+
+          <footer class="sidebar__footer">
+            <button
+              class="nav-row nav-row--help"
+              id="demo-modal-trigger"
+              type="button"
+              aria-haspopup="dialog"
+              aria-controls="demo-modal"
+              aria-expanded="false"
+            >
+              <img class="nav-row__icon" src="assets/sidebar/icon-help.svg" width="16" height="16" alt="" />
+              Help
+            </button>
+            <button class="user-menu" type="button">
+              <span class="user-menu__avatar">
+                <span class="user-menu__avatar-inner">S</span>
+              </span>
+              <span class="user-menu__email">Seb Johnson</span>
+            </button>
+          </footer>
+        </div>
+      </aside>
+
+      <main class="main">
+        <div class="main__content main__content--page">
+          <div class="page-placeholder">
+            <h1 class="page-placeholder__title">Files</h1>
+            <p class="page-placeholder__subtitle">This page is coming soon.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="demo-modal" id="demo-modal" hidden>
+      <button class="demo-modal__backdrop" type="button" aria-label="Close demo controls" tabindex="-1"></button>
+      <div
+        class="demo-modal__panel demo-menu"
+        id="demo-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="demo-modal-title"
+      >
+        <p class="demo-menu__title" id="demo-modal-title">Demo</p>
+        <div class="demo-menu__items">
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="empty-states-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Empty states</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="scaling-europe-demo" checked />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Scaling Europe demo</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-agent-table-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alt agent table design</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="alt-builder-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Alternative builder</span>
+          </label>
+          <label class="demo-toggle">
+            <input class="demo-toggle__input" type="checkbox" id="auto-type-demo" />
+            <span class="demo-toggle__switch" aria-hidden="true"></span>
+            <span class="demo-toggle__label">Auto type</span>
+          </label>
+          <label class="demo-menu__field">
+            <span class="demo-menu__field-label">Auto type script</span>
+            <textarea
+              class="demo-menu__textarea"
+              id="auto-type-text"
+              rows="3"
+              placeholder="Paste demo message…"
+              spellcheck="false"
+            >Build me a social media content engine: agents to pull tech news, post to LinkedIn, and analyze performance — plus an app to manage it all.</textarea>
+          </label>
+          <button class="demo-menu__btn" type="button" id="replay-intro-demo">
+            Replay card intro
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="scripts/scaling-demo.js?v=1"></script>
+    <script src="scripts/demo-modal.js?v=3"></script>
+  </body>
+</html>

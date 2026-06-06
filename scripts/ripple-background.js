@@ -173,6 +173,8 @@
     const noise = options.noise ?? DEFAULT_NOISE;
     const noiseEndsAt = options.noiseEndsAt ?? DEFAULT_NOISE_ENDS_AT;
     const waveDuration = options.waveDuration ?? WAVE_DURATION;
+    const displayScale = options.displayScale ?? DISPLAY_SCALE;
+    const enableHoverTriggers = options.bindHoverTriggers ?? true;
 
     const canvas = document.createElement("canvas");
     canvas.className = "ripple-background__canvas";
@@ -211,7 +213,7 @@
       canvas.width = rect.width * state.dpr;
       canvas.height = rect.height * state.dpr;
       const fitSize = Math.min(rect.width, rect.height);
-      state.scale = (fitSize / SOURCE_SIZE) * state.dpr * DISPLAY_SCALE;
+      state.scale = (fitSize / SOURCE_SIZE) * state.dpr * displayScale;
     }
 
     function centerTransform(ctx) {
@@ -387,11 +389,35 @@
     };
     window.addEventListener("resize", onResize);
 
-    const onClick = (event) => {
-      const target = event.target instanceof Element ? event.target : null;
-      if (target?.closest("[data-ripple-trigger]")) shift();
-    };
-    document.addEventListener("click", onClick);
+    let lastHoveredTrigger = null;
+
+    function canShiftFromHover() {
+      const main = document.querySelector(".main");
+      if (main?.classList.contains("main--category-selected")) return false;
+      if (main?.classList.contains("main--chat-active")) return false;
+      if (document.querySelector(".cards-orbit--intro-pending, .cards-orbit--intro")) {
+        return false;
+      }
+      return true;
+    }
+
+    function bindHoverTriggers() {
+      document.querySelectorAll("[data-ripple-trigger]").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          if (!canShiftFromHover()) return;
+          if (el === lastHoveredTrigger) return;
+          lastHoveredTrigger = el;
+          shift();
+        });
+        el.addEventListener("mouseleave", () => {
+          if (lastHoveredTrigger === el) lastHoveredTrigger = null;
+        });
+      });
+    }
+
+    if (enableHoverTriggers) {
+      bindHoverTriggers();
+    }
 
     return {
       reveal,
@@ -400,15 +426,16 @@
       waveDuration,
       destroy() {
         window.removeEventListener("resize", onResize);
-        document.removeEventListener("click", onClick);
         if (state.rafId !== null) cancelAnimationFrame(state.rafId);
         canvas.remove();
       },
     };
   }
 
-  const container = document.querySelector(".main__pattern-wrap");
-  if (!container) return;
+  window.createRippleBackground = createRippleBackground;
 
-  window.RippleBackground = createRippleBackground(container);
+  const container = document.querySelector(".main__pattern-wrap");
+  if (container) {
+    window.RippleBackground = createRippleBackground(container);
+  }
 })();
