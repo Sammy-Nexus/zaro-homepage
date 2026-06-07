@@ -11,8 +11,33 @@
         document.documentElement.setAttribute("data-new-task-pending", "");
       })();
     </script>
+    <link rel="preload" href="static/fonts/Saans-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="static/fonts/Saans-Medium.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="assets/category-panel/app-preview.png" as="image" />
-    <link rel="stylesheet" href="styles/main.css?v=174" />
+    <link rel="stylesheet" href="styles/fonts.css?v=175" />
+    <link rel="stylesheet" href="styles/variables.css?v=175" />
+    <link rel="stylesheet" href="styles/sidebar.css?v=175" />
+    <link rel="stylesheet" href="styles/cards.css?v=175" />
+    <link rel="stylesheet" href="styles/chat.css?v=176" />
+    <link rel="stylesheet" href="styles/category-panel.css?v=175" />
+    <link rel="stylesheet" href="styles/pages.css?v=175" />
+    <link rel="stylesheet" href="styles/session.css?v=175" />
+    <link rel="stylesheet" href="styles/builder.css?v=175" />
+    <link rel="stylesheet" href="styles/agents.css?v=175" />
+    <link rel="stylesheet" href="styles/scaling-studio-page.css?v=175" />
+    <link rel="stylesheet" href="styles/main.css?v=175" />
+    <script defer src="scripts/ripple-background.js?v=8"></script>
+    <script defer src="scripts/page-nav.js?v=2"></script>
+    <script defer src="scripts/category-select.js?v=35"></script>
+    <script defer src="scripts/builder-loader.js?v=11"></script>
+    <script defer src="scripts/builder-feed.js?v=9"></script>
+    <script defer src="scripts/alt-builder-demo.js?v=16"></script>
+    <script defer src="scripts/sessions.js?v=9"></script>
+    <script defer src="scripts/chat.js?v=24"></script>
+    <script defer src="scripts/cards-intro.js?v=7"></script>
+    <script defer src="scripts/new-task.js?v=4"></script>
+    <script defer src="scripts/empty-card-ripple.js?v=6"></script>
+    <script defer src="scripts/load-demo-scripts.js?v=1"></script>
   </head>
   <body>
   <div class="app">
@@ -545,20 +570,6 @@
     </div>
   </div>
 
-  <script src="scripts/ripple-background.js?v=7"></script>
-  <script src="scripts/scaling-demo.js?v=1"></script>
-  <script src="scripts/page-nav.js?v=2"></script>
-  <script src="scripts/category-select.js?v=35"></script>
-  <script src="scripts/builder-loader.js?v=11"></script>
-  <script src="scripts/builder-feed.js?v=9"></script>
-  <script src="scripts/alt-builder-demo.js?v=16"></script>
-  <script src="scripts/sessions.js?v=9"></script>
-  <script src="scripts/chat.js?v=24"></script>
-  <script src="scripts/cards-intro.js?v=7"></script>
-  <script src="scripts/new-task.js?v=4"></script>
-  <script src="scripts/demo-modal.js?v=3"></script>
-  <script src="scripts/cards-demo.js?v=5"></script>
-  <script src="scripts/empty-card-ripple.js?v=6"></script>
   <script>
     document.querySelectorAll('.view-toggle__btn').forEach((btn) => {
       btn.addEventListener('click', () => {

@@ -1,14 +1,4 @@
-@import "./fonts.css";
-@import "./variables.css";
-@import "./sidebar.css";
-@import "./cards.css";
-@import "./chat.css";
-@import "./category-panel.css";
-@import "./pages.css";
-@import "./session.css";
-@import "./builder.css";
-@import "./agents.css";
-@import "./scaling-studio-page.css";
+/* Layer styles are linked in parallel from each HTML page (see index.html). */
 
 *,
 *::before,

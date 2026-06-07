@@ -634,15 +634,16 @@
 
 .main--chat-active .cards-orbit {
   transform: scale(0.85);
-  transition: transform var(--chat-duration-open) var(--chat-ease);
+  filter: blur(8px);
+  transition:
+    transform var(--chat-duration-open) var(--chat-ease),
+    filter var(--chat-duration-open) var(--chat-ease);
 }
 
 .main--chat-active .category-card {
-  filter: blur(8px);
   opacity: 0.28;
   pointer-events: none;
   transition:
-    filter var(--chat-duration-open) var(--chat-ease),
     opacity var(--chat-duration-open) var(--chat-ease),
     transform var(--chat-duration-open) var(--chat-ease);
 }
@@ -724,10 +725,10 @@ html[data-new-task-pending] .cards-orbit--intro-pending ~ .chat-bar {
 
 .main--chat-active.main--chat-draft .cards-orbit {
   transform: scale(0.94);
+  filter: blur(3px);
 }
 
 .main--chat-active.main--chat-draft .category-card {
-  filter: blur(3px);
   opacity: 0.72;
   pointer-events: none;
 }
