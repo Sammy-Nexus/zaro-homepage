@@ -6,6 +6,7 @@
   const BUILDER_EXIT_MS = 520;
   const BUILDER_PATTERN_RETURN_MS = 600;
   const STATUS_PILL_STEP = "Creating agents...";
+  const STATUS_PILL_ENABLED = false;
 
   const LOADER_INTERVAL_MS = 800;
   const LOADER_WAVE_MS = 700;
@@ -102,6 +103,7 @@
   }
 
   function showStatusPill() {
+    if (!STATUS_PILL_ENABLED) return;
     if (!statusPill || !statusPillLoader || !statusPillText) return;
 
     stopPillLoader();

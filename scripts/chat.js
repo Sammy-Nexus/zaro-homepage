@@ -6,6 +6,7 @@
   const expanded = document.querySelector(".chat-bar__expanded");
   const compose = document.querySelector(".chat-bar__compose");
   const textarea = document.querySelector(".chat-bar__textarea");
+  const suggestions = document.getElementById("chat-suggestions");
   const root = document.documentElement;
   const autoTypeToggle = document.getElementById("auto-type-demo");
   const autoTypeText = document.getElementById("auto-type-text");
@@ -185,6 +186,7 @@
   function setChatPanels(active) {
     expanded.setAttribute("aria-hidden", active ? "false" : "true");
     if (compactRow) compactRow.setAttribute("aria-hidden", active ? "true" : "false");
+    suggestions?.setAttribute("aria-hidden", active ? "false" : "true");
   }
 
   function resetChatSize() {
@@ -462,11 +464,31 @@
     }, SEND_TRANSITION_MS);
   }
 
+  suggestions?.querySelectorAll(".chat-suggestions__chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      if (!(chip instanceof HTMLButtonElement)) return;
+
+      const prompt = chip.dataset.prompt?.trim();
+      if (!prompt) return;
+
+      if (!isActive()) {
+        activateChat();
+      }
+
+      textarea.value = prompt;
+      compactInput.value = prompt;
+      updateChatSize();
+      updateSendState();
+      focusTextarea();
+    });
+  });
+
   chatBar.addEventListener("submit", handleSend);
 
   document.addEventListener("mousedown", (event) => {
     if (!isActive() || isSessionView() || isBuilderView()) return;
     if (chatBar.contains(event.target)) return;
+    if (suggestions?.contains(event.target)) return;
     deactivateChat();
   });
 

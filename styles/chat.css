@@ -16,6 +16,27 @@
   --chat-height-max: calc(var(--chat-compose-max) + var(--chat-footer-height));
   --chat-extra: 0px;
   --chat-compact-height: 48px;
+  --chat-suggestions-gap: 16px;
+  --chat-chip-enter-delay: calc(var(--chat-duration-open) - 0.2s);
+  --chat-chip-enter-duration: 0.32s;
+  --chat-chip-stagger: 0.055s;
+  --chat-chip-ease: linear(
+    0 0%,
+    0.2459 7.14286%,
+    0.6526 14.2857%,
+    0.9468 21.4286%,
+    1.0764 28.5714%,
+    1.0915 35.7143%,
+    1.0585 42.8571%,
+    1.0219 50%,
+    0.9993 57.1429%,
+    0.9914 64.2857%,
+    0.9921 71.4286%,
+    0.9957 78.5714%,
+    0.9988 85.7143%,
+    1.0004 92.8571%,
+    1 100%
+  );
 }
 
 @property --chat-extra {
@@ -447,6 +468,79 @@
   color: var(--nexus-mid-brown);
 }
 
+@keyframes cds-reveal-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.chat-suggestions {
+  position: absolute;
+  left: 50%;
+  top: calc(
+    50% + var(--chat-expanded-height, var(--chat-compact-height)) / 2 + var(--chat-suggestions-gap)
+  );
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 260px;
+  flex-wrap: nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.chat-suggestions__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--cloud-200);
+  border-radius: 999px;
+  background: var(--cloud-50);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.02px;
+  color: var(--nexus-mid-brown);
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+  opacity: 0;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.chat-suggestions__chip:hover {
+  background: var(--cloud-100);
+  border-color: var(--cloud-300);
+  color: var(--nexus-brown);
+}
+
+.chat-suggestions__chip:focus-visible {
+  outline: 2px solid var(--lilac-500);
+  outline-offset: 2px;
+}
+
+.chat-suggestions__chip img,
+.chat-suggestions__chip svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
 /* Background layer transitions (close timing) */
 .main__pattern-wrap {
   transition:
@@ -504,6 +598,32 @@
   transition: opacity var(--chat-duration-open) var(--chat-ease);
 }
 
+.main--chat-active .chat-suggestions {
+  width: min(660px, calc(100vw - 80px));
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.main--chat-active .chat-suggestions__chip {
+  animation: cds-reveal-in var(--chat-chip-enter-duration) var(--chat-chip-ease) both;
+}
+
+.main--chat-active .chat-suggestions__chip:nth-child(1) {
+  animation-delay: calc(var(--chat-chip-enter-delay) + var(--chat-chip-stagger) * 0);
+}
+
+.main--chat-active .chat-suggestions__chip:nth-child(2) {
+  animation-delay: calc(var(--chat-chip-enter-delay) + var(--chat-chip-stagger) * 1);
+}
+
+.main--chat-active .chat-suggestions__chip:nth-child(3) {
+  animation-delay: calc(var(--chat-chip-enter-delay) + var(--chat-chip-stagger) * 2);
+}
+
+.main--chat-active .chat-suggestions__chip:nth-child(4) {
+  animation-delay: calc(var(--chat-chip-enter-delay) + var(--chat-chip-stagger) * 3);
+}
+
 .main--chat-active .main__pattern-wrap {
   filter: blur(var(--pattern-dim-blur));
   opacity: var(--pattern-dim-opacity);
@@ -519,7 +639,7 @@
 
 .main--chat-active .category-card {
   filter: blur(8px);
-  opacity: 0.5;
+  opacity: 0.28;
   pointer-events: none;
   transition:
     filter var(--chat-duration-open) var(--chat-ease),
@@ -567,6 +687,23 @@
   .main--chat-active .chat-bar {
     width: min(660px, calc(100vw - 32px));
   }
+
+  .main--chat-active .chat-suggestions {
+    width: min(660px, calc(100vw - 32px));
+    gap: 6px;
+  }
+
+  .main--chat-active .chat-suggestions__chip {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}
+
+.main--session-view .chat-suggestions,
+.main--builder-view .chat-suggestions,
+.main--category-selected .chat-suggestions,
+.main--category-dismissing .chat-suggestions {
+  display: none;
 }
 
 /* Cross-page New Task — show orbit at rest while homepage loads */
@@ -638,10 +775,16 @@ html[data-new-task-pending] .cards-orbit--intro-pending ~ .chat-bar {
   .chat-bar__panel,
   .chat-bar__compact,
   .chat-bar__expanded,
+  .chat-suggestions__chip,
   .main__pattern-wrap,
   .cards-orbit,
   .category-card {
     transition: none;
+  }
+
+  .main--chat-active .chat-suggestions__chip {
+    animation: none;
+    opacity: 1;
   }
 
   .cards-orbit--intro-pending ~ .chat-bar,

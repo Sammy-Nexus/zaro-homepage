@@ -1,6 +1,18 @@
 (function () {
   const CLICK_MODE = "panel";
 
+  /** Orbit order: top → clockwise (matches --orbit-angle in cards.css). */
+  const ORBIT_CLOCKWISE_SLUGS = [
+    "personal",
+    "marketing",
+    "operations",
+    "design",
+    "hr",
+    "finance",
+    "product",
+    "sales",
+  ];
+
   const CATEGORY_META = {
     sales: { title: "Sales", slug: "sales", viewAll: "View all sales apps" },
     personal: { title: "Personal", slug: "personal", viewAll: "View all personal apps" },
@@ -911,6 +923,23 @@
     if (event.key === "Escape" && selectedSlug) {
       event.preventDefault();
       deselect();
+      return;
+    }
+
+    if (!selectedSlug || !main.classList.contains("main--category-selected")) return;
+    if (isCategoryNavigationBlocked()) return;
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    if (isEditableTarget(event.target)) return;
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      navigateCategory("next");
+      return;
+    }
+
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      navigateCategory("prev");
     }
   });
 
@@ -970,6 +999,43 @@
   function selectBySlug(slug, options = {}) {
     const card = cards.find((item) => getCardSlug(item) === slug);
     if (card) selectCard(card, options);
+  }
+
+  function isEditableTarget(target) {
+    if (!(target instanceof Element)) return false;
+    if (
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement
+    ) {
+      return true;
+    }
+    return target.isContentEditable;
+  }
+
+  function isCategoryNavigationBlocked() {
+    return (
+      main.classList.contains("main--category-dismissing") ||
+      main.classList.contains("main--session-view") ||
+      main.classList.contains("main--builder-view")
+    );
+  }
+
+  function navigateCategory(direction) {
+    if (!selectedSlug || isCategoryNavigationBlocked()) return;
+
+    const index = ORBIT_CLOCKWISE_SLUGS.indexOf(selectedSlug);
+    if (index === -1) return;
+
+    const step = direction === "next" ? 1 : -1;
+    const nextIndex =
+      (index + step + ORBIT_CLOCKWISE_SLUGS.length) % ORBIT_CLOCKWISE_SLUGS.length;
+    const nextSlug = ORBIT_CLOCKWISE_SLUGS[nextIndex];
+    selectBySlug(nextSlug);
+    hideCategoryTooltip();
+
+    const nextCard = cards.find((card) => getCardSlug(card) === nextSlug);
+    nextCard?.focus({ preventScroll: true });
   }
 
   window.CategoryPanel = {
